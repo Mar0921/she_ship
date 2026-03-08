@@ -43,8 +43,8 @@ function SignupFlow() {
   };
 
   const handleUserOnboardingComplete = () => {
-    // Redirect to profile page after onboarding
-    navigate('/perfil');
+    // Redirect to home page after onboarding
+    navigate('/');
   };
 
   const handleProfessionalInfoComplete = () => {
