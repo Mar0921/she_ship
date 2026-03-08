@@ -4,7 +4,14 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dbPath = path.join(__dirname, '../../data/purplematch.db');
+
+// Determine if we're in production (running from dist/) or development
+const isProduction = __dirname.includes('/dist/') || __dirname.includes('\\dist\\');
+
+// Database path: in production it's at project root/data/, in dev it's relative to current dir
+const dbPath = isProduction
+  ? path.join(__dirname, '../../data/purplematch.db')
+  : path.join(__dirname, '../../data/purplematch.db');
 
 // Create data directory if it doesn't exist
 const dataDir = path.dirname(dbPath);
