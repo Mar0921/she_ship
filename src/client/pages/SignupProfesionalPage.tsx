@@ -13,7 +13,7 @@ import { Heart, Briefcase, Check } from 'lucide-react';
 export default function SignupProfesionalPage() {
   return (
     <Layout showFooter={false}>
-      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center py-12 px-4 bg-gradient-to-b from-purple-50 to-white">
+      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center py-12 px-4 bg-gradient-to-b from-whatsapp-50 to-white">
         <ProfesionalSignupFlow />
       </div>
     </Layout>
@@ -99,9 +99,7 @@ function ProfesionalSignupForm({
     <Card className="w-full max-w-md mx-auto bg-white border-0 shadow-xl relative">
       <CardHeader className="text-center pb-2">
         <div className="flex items-center justify-center gap-2 mb-2">
-          <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-            <Heart className="w-5 h-5 text-white" />
-          </div>
+          <img src="/logo.png" className="w-10 h-10 object-contain" />
         </div>
         <CardTitle className="text-xl text-gray-900">
           Registro de Profesional
@@ -122,7 +120,7 @@ function ProfesionalSignupForm({
               name="nombre"
               id="nombre"
               placeholder="Dra. María García"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -136,7 +134,7 @@ function ProfesionalSignupForm({
               name="email"
               id="email"
               placeholder="tu@email.com"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -150,7 +148,7 @@ function ProfesionalSignupForm({
               name="password"
               id="password"
               placeholder="Mínimo 8 caracteres"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -164,7 +162,7 @@ function ProfesionalSignupForm({
               name="confirmPassword"
               id="confirm-password"
               placeholder="Repite tu contraseña"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -175,18 +173,18 @@ function ProfesionalSignupForm({
                 id="consent-terms"
                 type="checkbox"
                 name="consent-terms"
-                className="w-4 h-4 border-gray-300 rounded bg-gray-50 text-purple-600 focus:ring-purple-500"
+                className="w-4 h-4 border-gray-300 rounded bg-gray-50 text-whatsapp-600 focus:ring-whatsapp-500"
                 required
               />
             </div>
             <div className="ml-3 text-sm">
               <Label htmlFor="consent-terms" className="text-gray-600">
                 Acepto los{' '}
-                <a className="font-medium text-purple-600 hover:underline" href="/terms" target="_blank">
+                <a className="font-medium text-whatsapp-600 hover:underline" href="/terms" target="_blank">
                   Términos y Condiciones
                 </a>{' '}
                 y la{' '}
-                <a className="font-medium text-purple-600 hover:underline" href="/privacy" target="_blank">
+                <a className="font-medium text-whatsapp-600 hover:underline" href="/privacy" target="_blank">
                   Política de Privacidad
                 </a>
               </Label>
@@ -194,7 +192,7 @@ function ProfesionalSignupForm({
           </div>
 
           <Button
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+            className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             type="submit"
             disabled={isLoading}
           >
@@ -208,7 +206,7 @@ function ProfesionalSignupForm({
           ¿Ya tienes cuenta?{' '}
           <Link
             to="/login"
-            className="text-purple-600 hover:text-purple-700 font-medium"
+            className="text-whatsapp-600 hover:text-whatsapp-700 font-medium"
           >
             Inicia sesión
           </Link>
@@ -379,7 +377,7 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
               id="description"
               rows={3}
               placeholder="Cuéntanos sobre tu enfoque terapéutico y experiencia..."
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500 text-sm"
+              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-whatsapp-500 focus:ring-whatsapp-500 text-sm"
             />
           </div>
 
@@ -394,7 +392,7 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
                   onClick={() => toggleSpecialty(specialty)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     selectedSpecialties.includes(specialty)
-                      ? 'bg-purple-600 text-white'
+                      ? 'bg-whatsapp-500 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -413,7 +411,7 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
               <select
                 name="modality"
                 id="modality"
-                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500 text-sm"
+                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-whatsapp-500 focus:ring-whatsapp-500 text-sm"
                 required
               >
                 <option value="online">Solo online</option>
@@ -446,7 +444,7 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
                   onClick={() => toggleLanguage(language)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     selectedLanguages.includes(language)
-                      ? 'bg-purple-600 text-white'
+                      ? 'bg-whatsapp-500 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -484,7 +482,7 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
                 id="isVolunteer"
                 type="checkbox"
                 name="isVolunteer"
-                className="w-4 h-4 border-gray-300 rounded text-purple-600 focus:ring-purple-500"
+                className="w-4 h-4 border-gray-300 rounded text-whatsapp-600 focus:ring-whatsapp-500"
               />
               <Label htmlFor="isVolunteer" className="ml-2 text-sm text-gray-600">
                 Ofrezco sesiones gratuitas o de bajo costo
@@ -520,15 +518,15 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
             />
           </div>
 
-          <div className="bg-purple-50 rounded-lg p-4">
-            <p className="text-sm text-purple-800">
+          <div className="bg-whatsapp-50 rounded-lg p-4">
+            <p className="text-sm text-whatsapp-800">
               <strong>Nota:</strong> Tu perfil será revisado por nuestro equipo para verificación.
               Mientras tanto, podrás acceder a tu dashboard y configurar tu perfil.
             </p>
           </div>
 
           <Button
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+            className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             type="submit"
             disabled={isLoading}
           >
@@ -557,7 +555,7 @@ function ProfesionalSignupSuccess({ email }: { email: string }) {
           Hemos enviado un correo de verificación a <strong>{email}</strong>
         </p>
 
-        <div className="bg-purple-50 rounded-lg p-4 text-left">
+        <div className="bg-whatsapp-50 rounded-lg p-4 text-left">
           <p className="text-sm purple-800">
             Tu perfil profesional ha sido enviado para verificación.
             Te notificaremos por correo cuando esté aprobado.
@@ -565,7 +563,7 @@ function ProfesionalSignupSuccess({ email }: { email: string }) {
         </div>
 
         <Link to="/login" className="block">
-          <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+          <Button className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
             Iniciar sesión
           </Button>
         </Link>

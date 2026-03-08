@@ -2,7 +2,7 @@ import * as React from "react"
 import { cn } from "@/client/lib/utils"
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link"
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "whatsapp"
   size?: "default" | "sm" | "lg" | "icon"
   asChild?: boolean
 }
@@ -12,12 +12,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const baseClasses = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
     
     const variantClasses = {
-      default: "bg-black text-white shadow hover:bg-gray-800 active:bg-gray-900",
+      default: "bg-whatsapp-500 text-white shadow hover:bg-whatsapp-600 active:bg-whatsapp-700",
       destructive: "bg-red-600 text-white shadow-sm hover:bg-red-700 active:bg-red-800",
-      outline: "border border-gray-300 bg-white shadow-sm hover:bg-gray-50 hover:text-gray-900 active:bg-gray-100",
-      secondary: "bg-gray-100 text-gray-900 shadow-sm hover:bg-gray-200 active:bg-gray-300",
-      ghost: "hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200",
-      link: "text-gray-900 underline-offset-4 hover:underline"
+      outline: "border border-whatsapp-300 bg-transparent shadow-sm hover:bg-whatsapp-50 hover:text-whatsapp-700 hover:border-whatsapp-400 active:bg-whatsapp-100 text-whatsapp-700",
+      secondary: "bg-whatsapp-50 text-whatsapp-800 shadow-sm hover:bg-whatsapp-100 active:bg-whatsapp-200",
+      ghost: "hover:bg-whatsapp-50 hover:text-whatsapp-700 active:bg-whatsapp-100",
+      link: "text-whatsapp-700 underline-offset-4 hover:underline hover:text-whatsapp-800",
+      whatsapp: "bg-whatsapp-500 text-white shadow-sm hover:bg-whatsapp-600 active:bg-whatsapp-700"
     }
     
     const sizeClasses = {

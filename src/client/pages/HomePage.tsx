@@ -112,7 +112,7 @@ export default function HomePage() {
     return (
       <Layout>
         <div className="flex items-center justify-center min-h-[400px]">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-whatsapp-600"></div>
         </div>
       </Layout>
     );
@@ -142,7 +142,7 @@ function UsuarioHomeView({
       title: 'Encuentra tu Terapeuta',
       description: 'Conecta con profesionales verificados que entienden tu contexto y necesidades.',
       link: '/terapeutas',
-      color: 'bg-purple-100 text-purple-600'
+      color: 'bg-whatsapp-100 text-whatsapp-600'
     },
     {
       icon: Users,
@@ -168,31 +168,17 @@ function UsuarioHomeView({
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
-      {/* Header with user info and logout */}
-      <header className="bg-white shadow-sm border-b border-purple-100">
+    <div className="min-h-screen bg-gradient-to-b from-whatsapp-50 to-white">
+      {/* Header with user info only (no buttons - buttons are in main Navigation) */}
+      <header className="bg-white shadow-sm border-b border-whatsapp-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                <User className="w-5 h-5 text-purple-600" />
-              </div>
-              <div>
-                <p className="font-medium text-gray-900">Bienvenida</p>
-                <p className="text-sm text-gray-500">{user.email}</p>
-              </div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-whatsapp-100 rounded-full flex items-center justify-center">
+              <User className="w-5 h-5 text-whatsapp-600" />
             </div>
-            <div className="flex items-center gap-3">
-              <Link to="/perfil">
-                <Button variant="ghost" size="sm">
-                  <Settings className="w-4 h-4 mr-2" />
-                  Mi Perfil
-                </Button>
-              </Link>
-              <Button variant="outline" size="sm" onClick={onLogout}>
-                <LogOut className="w-4 h-4 mr-2" />
-                Cerrar Sesión
-              </Button>
+            <div>
+              <p className="font-medium text-gray-900">Bienvenida</p>
+              <p className="text-sm text-gray-500">{user.email}</p>
             </div>
           </div>
         </div>
@@ -215,7 +201,7 @@ function UsuarioHomeView({
             <Link
               key={feature.title}
               to={feature.link}
-              className="group p-6 bg-white rounded-2xl hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-purple-200"
+              className="group p-6 bg-white rounded-2xl hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-whatsapp-200"
             >
               <div className={`w-12 h-12 ${feature.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                 <feature.icon className="w-6 h-6" />
@@ -233,7 +219,7 @@ function UsuarioHomeView({
             <h3 className="text-xl font-semibold mb-2">Mis Citas</h3>
             <p className="text-purple-100 mb-4">Gestiona tus citas con profesionales</p>
             <Link to="/chat">
-              <Button variant="secondary" className="w-full">
+              <Button variant="whatsapp" className="w-full">
                 Ver Citas
               </Button>
             </Link>
@@ -244,7 +230,7 @@ function UsuarioHomeView({
             <h3 className="text-xl font-semibold mb-2">Mensajes</h3>
             <p className="text-pink-100 mb-4">Chatea con tu terapeuta</p>
             <Link to="/chat">
-              <Button variant="secondary" className="w-full">
+              <Button variant="whatsapp" className="w-full">
                 Abrir Chat
               </Button>
             </Link>
@@ -255,7 +241,7 @@ function UsuarioHomeView({
             <h3 className="text-xl font-semibold mb-2">Mi Progreso</h3>
             <p className="text-violet-100 mb-4">Revisa tu diario emocional</p>
             <Link to="/perfil">
-              <Button variant="secondary" className="w-full">
+              <Button variant="whatsapp" className="w-full">
                 Ver Progreso
               </Button>
             </Link>
@@ -276,14 +262,14 @@ function ProfessionalHomeView({
   onLogout: () => void 
 }) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-whatsapp-50 to-white">
       {/* Header with user info and logout */}
-      <header className="bg-white shadow-sm border-b border-purple-100">
+      <header className="bg-white shadow-sm border-b border-whatsapp-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                <Briefcase className="w-5 h-5 text-purple-600" />
+              <div className="w-10 h-10 bg-whatsapp-100 rounded-full flex items-center justify-center">
+                <Briefcase className="w-5 h-5 text-whatsapp-600" />
               </div>
               <div>
                 <p className="font-medium text-gray-900">Panel Profesional</p>
@@ -326,8 +312,8 @@ function ProfessionalHomeView({
         {/* Professional Actions */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-            <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-              <Calendar className="w-6 h-6 text-purple-600" />
+            <div className="w-12 h-12 bg-whatsapp-100 rounded-xl flex items-center justify-center mb-4">
+              <Calendar className="w-6 h-6 text-whatsapp-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Citas Programadas</h3>
             <p className="text-gray-600 text-sm mb-4">Ver y gestionar tus citas</p>
@@ -363,25 +349,25 @@ function ProfessionalHomeView({
         <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Información del Perfil</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-whatsapp-50 rounded-lg p-4">
               <p className="text-sm text-gray-600">Especialidades</p>
-              <p className="text-xl font-bold text-purple-600">
+              <p className="text-xl font-bold text-whatsapp-600">
                 {professionalData?.specialties?.length || 0}
               </p>
             </div>
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-whatsapp-50 rounded-lg p-4">
               <p className="text-sm text-gray-600">Años de experiencia</p>
-              <p className="text-xl font-bold text-purple-600">
+              <p className="text-xl font-bold text-whatsapp-600">
                 {professionalData?.experienceYears || 0}
               </p>
             </div>
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-whatsapp-50 rounded-lg p-4">
               <p className="text-sm text-gray-600">Modalidad</p>
-              <p className="text-xl font-bold text-purple-600 capitalize">
+              <p className="text-xl font-bold text-whatsapp-600 capitalize">
                 {professionalData?.modality || 'No especificada'}
               </p>
             </div>
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-whatsapp-50 rounded-lg p-4">
               <p className="text-sm text-gray-600">Estado</p>
               <p className="text-xl font-bold text-green-600 capitalize">
                 {professionalData?.isVerified ? 'Verificado' : 'Pendiente'}
@@ -402,7 +388,7 @@ function PublicHomeView() {
       title: 'Encuentra tu Terapeuta',
       description: 'Conecta con profesionales verificados que entienden tu contexto y necesidades.',
       link: '/terapeutas',
-      color: 'bg-purple-100 text-purple-600'
+      color: 'bg-whatsapp-100 text-whatsapp-600'
     },
     {
       icon: Users,
@@ -421,7 +407,7 @@ function PublicHomeView() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-whatsapp-50 to-white">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -432,12 +418,12 @@ function PublicHomeView() {
           </p>
           <div className="flex justify-center gap-4">
             <Link to="/login">
-              <Button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3">
+              <Button className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white px-8 py-3">
                 Iniciar Sesión
               </Button>
             </Link>
             <Link to="/signup">
-              <Button variant="outline" className="border-purple-200 text-purple-700 px-8 py-3">
+              <Button variant="outline" className="border-whatsapp-200 text-whatsapp-700 px-8 py-3">
                 Registrarse
               </Button>
             </Link>
@@ -450,7 +436,7 @@ function PublicHomeView() {
             <Link
               key={feature.title}
               to={feature.link}
-              className="group p-6 bg-white rounded-2xl hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-purple-200"
+              className="group p-6 bg-white rounded-2xl hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-whatsapp-200"
             >
               <div className={`w-12 h-12 ${feature.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                 <feature.icon className="w-6 h-6" />

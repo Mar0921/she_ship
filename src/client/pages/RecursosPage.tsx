@@ -34,22 +34,34 @@ type Resource = {
 
 const emergencyLines = [
   {
-    number: '016',
-    name: 'Victimas de violencia de genero',
+    number: '(0057) 604 60 42 784',
+    name: 'Telefono de la Esperanza',
     description: 'Atencion las 24 horas, todos los dias',
     color: 'bg-red-50 border-red-200 text-red-700'
   },
   {
-    number: '112',
-    name: 'Emergencias',
+    number: '(0057) 323 2425',
+    name: 'Telefono de la Esperanza',
+    description: 'Ayuda emocional',
+    color: 'bg-red-50 border-red-200 text-red-700'
+  },
+  {
+    number: '(0057) 284 6600',
+    name: 'Telefono de la Esperanza',
+    description: 'Ayuda emocional',
+    color: 'bg-red-50 border-red-200 text-red-700'
+  },
+  {
+    number: '123',
+    name: 'Linea unica de emergencias Nacional',
     description: 'Para situaciones de emergencia inmediata',
     color: 'bg-orange-50 border-orange-200 text-orange-700'
   },
   {
-    number: '717 003 717',
-    name: 'Telefono de la Esperanza',
-    description: 'Ayuda emocional y prevencion del suicidio',
-    color: 'bg-blue-50 border-blue-200 text-blue-700'
+    number: '01 8000 112 137',
+    name: 'Linea Purpura Bogota',
+    description: 'Linea gratuita',
+    color: 'bg-purple-50 border-purple-200 text-purple-700'
   }
 ];
 
@@ -236,7 +248,7 @@ export default function RecursosPage() {
                   placeholder="Buscar recursos..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-whatsapp-500 focus:border-transparent"
                 />
               </div>
 
@@ -253,7 +265,7 @@ export default function RecursosPage() {
                         onClick={() => setSelectedCategory(category.id as ResourceCategory)}
                         className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${
                           isActive
-                            ? 'bg-purple-100 text-purple-700'
+                            ? 'bg-whatsapp-100 text-whatsapp-700'
                             : 'text-gray-600 hover:bg-gray-50'
                         }`}
                       >
@@ -261,7 +273,7 @@ export default function RecursosPage() {
                           <Icon className="w-4 h-4" />
                           <span className="font-medium">{category.label}</span>
                         </div>
-                        <span className={`text-sm ${isActive ? 'text-purple-600' : 'text-gray-400'}`}>
+                        <span className={`text-sm ${isActive ? 'text-whatsapp-600' : 'text-gray-400'}`}>
                           {category.count}
                         </span>
                       </button>
@@ -283,7 +295,7 @@ export default function RecursosPage() {
                   placeholder="Buscar recursos..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-whatsapp-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -312,7 +324,7 @@ export default function RecursosPage() {
                       onClick={() => setSelectedCategory(category.id as ResourceCategory)}
                       className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
                         isActive
-                          ? 'bg-purple-600 text-white'
+                          ? 'bg-whatsapp-500 text-white'
                           : 'bg-white text-gray-600 border border-gray-200'
                       }`}
                     >
@@ -367,10 +379,10 @@ function ResourceCard({ resource, featured }: ResourceCardProps) {
 
   return (
     <div className={`bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow ${
-      featured ? 'border-2 border-purple-100' : ''
+      featured ? 'border-2 border-whatsapp-100' : ''
     }`}>
       {featured && (
-        <div className="flex items-center gap-1 text-purple-600 text-sm font-medium mb-3">
+        <div className="flex items-center gap-1 text-whatsapp-600 text-sm font-medium mb-3">
           <Star className="w-4 h-4 fill-current" />
           Destacado
         </div>
@@ -397,7 +409,7 @@ function ResourceCard({ resource, featured }: ResourceCardProps) {
         </div>
         <Button 
           variant="ghost" 
-          className="text-purple-600 hover:text-purple-700 hover:bg-purple-50"
+          className="text-whatsapp-600 hover:text-whatsapp-700 hover:bg-whatsapp-50"
           onClick={() => resource.url && window.open(resource.url, '_blank')}
         >
           Leer mas

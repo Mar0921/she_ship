@@ -15,7 +15,7 @@ type UserType = 'usuario' | 'profesional' | null;
 export default function SignupPage() {
   return (
     <Layout showFooter={false}>
-      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center py-12 px-4 bg-gradient-to-b from-purple-50 to-white">
+      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center py-12 px-4 bg-gradient-to-b from-whatsapp-50 to-white">
         <SignupFlow />
       </div>
     </Layout>
@@ -90,9 +90,7 @@ function UserTypeSelection({ onSelect }: { onSelect: (type: UserType) => void })
     <div className="w-full max-w-2xl mx-auto">
       <div className="text-center mb-8">
         <div className="flex items-center justify-center gap-2 mb-4">
-          <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center">
-            <Heart className="w-6 h-6 text-white" />
-          </div>
+          <img src="/logo.png" className="w-10 h-10 object-contain" />
           <span className="text-2xl font-bold text-gray-900">PurpleMatch</span>
         </div>
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Crear cuenta</h1>
@@ -103,10 +101,10 @@ function UserTypeSelection({ onSelect }: { onSelect: (type: UserType) => void })
         {/* Usuario Card */}
         <button
           onClick={() => onSelect('usuario')}
-          className="group p-6 bg-white rounded-2xl border-2 border-gray-200 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+          className="group p-6 bg-white rounded-2xl border-2 border-gray-200 hover:border-whatsapp-500 hover:shadow-lg transition-all text-left"
         >
-          <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors">
-            <User className="w-7 h-7 text-purple-600" />
+          <div className="w-14 h-14 bg-whatsapp-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-whatsapp-200 transition-colors">
+            <User className="w-7 h-7 text-whatsapp-600" />
           </div>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">Soy Usuaria</h3>
           <p className="text-gray-600 text-sm mb-4">
@@ -114,19 +112,19 @@ function UserTypeSelection({ onSelect }: { onSelect: (type: UserType) => void })
           </p>
           <ul className="space-y-2">
             <li className="flex items-center gap-2 text-sm text-gray-600">
-              <Check className="w-4 h-4 text-purple-600" />
+              <Check className="w-4 h-4 text-whatsapp-600" />
               Encuentra tu terapeuta ideal
             </li>
             <li className="flex items-center gap-2 text-sm text-gray-600">
-              <Check className="w-4 h-4 text-purple-600" />
+              <Check className="w-4 h-4 text-whatsapp-600" />
               Diario emocional privado
             </li>
             <li className="flex items-center gap-2 text-sm text-gray-600">
-              <Check className="w-4 h-4 text-purple-600" />
+              <Check className="w-4 h-4 text-whatsapp-600" />
               Comunidad de apoyo
             </li>
           </ul>
-          <div className="mt-4 flex items-center text-purple-600 font-medium">
+          <div className="mt-4 flex items-center text-whatsapp-600 font-medium">
             Continuar <ChevronRight className="w-4 h-4 ml-1" />
           </div>
         </button>
@@ -134,10 +132,10 @@ function UserTypeSelection({ onSelect }: { onSelect: (type: UserType) => void })
         {/* Profesional Card */}
         <button
           onClick={() => onSelect('profesional')}
-          className="group p-6 bg-white rounded-2xl border-2 border-gray-200 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+          className="group p-6 bg-white rounded-2xl border-2 border-gray-200 hover:border-whatsapp-500 hover:shadow-lg transition-all text-left"
         >
-          <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors">
-            <Briefcase className="w-7 h-7 text-purple-600" />
+          <div className="w-14 h-14 bg-whatsapp-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-whatsapp-200 transition-colors">
+            <Briefcase className="w-7 h-7 text-whatsapp-600" />
           </div>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">Soy Profesional</h3>
           <p className="text-gray-600 text-sm mb-4">
@@ -145,19 +143,19 @@ function UserTypeSelection({ onSelect }: { onSelect: (type: UserType) => void })
           </p>
           <ul className="space-y-2">
             <li className="flex items-center gap-2 text-sm text-gray-600">
-              <Check className="w-4 h-4 text-purple-600" />
+              <Check className="w-4 h-4 text-whatsapp-600" />
               Perfil profesional verificado
             </li>
             <li className="flex items-center gap-2 text-sm text-gray-600">
-              <Check className="w-4 h-4 text-purple-600" />
+              <Check className="w-4 h-4 text-whatsapp-600" />
               Gestiona tus citas
             </li>
             <li className="flex items-center gap-2 text-sm text-gray-600">
-              <Check className="w-4 h-4 text-purple-600" />
+              <Check className="w-4 h-4 text-whatsapp-600" />
               Conecta con pacientes
             </li>
           </ul>
-          <div className="mt-4 flex items-center text-purple-600 font-medium">
+          <div className="mt-4 flex items-center text-whatsapp-600 font-medium">
             Continuar <ChevronRight className="w-4 h-4 ml-1" />
           </div>
         </button>
@@ -165,7 +163,7 @@ function UserTypeSelection({ onSelect }: { onSelect: (type: UserType) => void })
 
       <p className="text-center text-sm text-gray-600 mt-8">
         ¿Ya tienes cuenta?{' '}
-        <Link to="/login" className="text-purple-600 hover:text-purple-700 font-medium">
+        <Link to="/login" className="text-whatsapp-600 hover:text-whatsapp-700 font-medium">
           Inicia sesion
         </Link>
       </p>
@@ -226,9 +224,7 @@ function SignupForm({
           <ChevronLeft className="w-5 h-5" />
         </button>
         <div className="flex items-center justify-center gap-2 mb-2">
-          <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-            <Heart className="w-5 h-5 text-white" />
-          </div>
+          <img src="/logo.png" className="w-10 h-10 object-contain" />
         </div>
         <CardTitle className="text-xl text-gray-900">
           {userType === 'profesional' ? 'Registro Profesional' : 'Crear cuenta'}
@@ -251,7 +247,7 @@ function SignupForm({
               name="email"
               id="email"
               placeholder="tu@email.com"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -265,7 +261,7 @@ function SignupForm({
               name="password"
               id="password"
               placeholder="Minimo 8 caracteres"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -279,7 +275,7 @@ function SignupForm({
               name="confirmPassword"
               id="confirm-password"
               placeholder="Repite tu contraseña"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -290,18 +286,18 @@ function SignupForm({
                 id="consent-terms"
                 type="checkbox"
                 name="consent-terms"
-                className="w-4 h-4 border-gray-300 rounded bg-gray-50 text-purple-600 focus:ring-purple-500"
+                className="w-4 h-4 border-gray-300 rounded bg-gray-50 text-whatsapp-600 focus:ring-whatsapp-500"
                 required
               />
             </div>
             <div className="ml-3 text-sm">
               <Label htmlFor="consent-terms" className="text-gray-600">
                 Acepto los{' '}
-                <a className="font-medium text-purple-600 hover:underline" href="/terms" target="_blank">
+                <a className="font-medium text-whatsapp-600 hover:underline" href="/terms" target="_blank">
                   Terminos y Condiciones
                 </a>{' '}
                 y la{' '}
-                <a className="font-medium text-purple-600 hover:underline" href="/privacy" target="_blank">
+                <a className="font-medium text-whatsapp-600 hover:underline" href="/privacy" target="_blank">
                   Politica de Privacidad
                 </a>
               </Label>
@@ -309,7 +305,7 @@ function SignupForm({
           </div>
 
           <Button
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+            className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             type="submit"
             disabled={isLoading}
           >
@@ -323,7 +319,7 @@ function SignupForm({
           ¿Ya tienes cuenta?{' '}
           <Link
             to="/login"
-            className="text-purple-600 hover:text-purple-700 font-medium"
+            className="text-whatsapp-600 hover:text-whatsapp-700 font-medium"
           >
             Inicia sesion
           </Link>
@@ -508,7 +504,7 @@ function UserOnboardingForm({ onSuccess }: { onSuccess: () => void }) {
                 onClick={() => setIsRural(!isRural)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
                   isRural
-                    ? 'bg-purple-100 border-purple-300 text-purple-700'
+                    ? 'bg-whatsapp-100 border-whatsapp-300 text-whatsapp-700'
                     : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'
                 }`}
               >
@@ -567,22 +563,22 @@ function UserOnboardingForm({ onSuccess }: { onSuccess: () => void }) {
               id="medicalHistory"
               rows={3}
               placeholder="Puedes compartir cualquier diagnostico previo, medicacion actual, o informacion que consideres relevante para tu terapeuta..."
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500 text-sm"
+              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-whatsapp-500 focus:ring-whatsapp-500 text-sm"
             />
             <p className="text-xs text-gray-500 mt-1">
               Esta informacion es completamente privada y solo la veras tu y tu terapeuta
             </p>
           </div>
 
-          <div className="bg-purple-50 rounded-lg p-4">
-            <p className="text-sm text-purple-800">
+          <div className="bg-whatsapp-50 rounded-lg p-4">
+            <p className="text-sm text-whatsapp-800">
               <strong>Tu privacidad es importante:</strong> Toda esta informacion es opcional y puedes
               elegir participar de forma anonima en la comunidad. Puedes cambiar estos datos en cualquier momento.
             </p>
           </div>
 
           <Button
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+            className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             type="submit"
             disabled={isLoading}
           >
@@ -754,7 +750,7 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
               id="description"
               rows={3}
               placeholder="Cuentanos sobre tu enfoque terapeutico y experiencia..."
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500 text-sm"
+              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-whatsapp-500 focus:ring-whatsapp-500 text-sm"
             />
           </div>
 
@@ -769,7 +765,7 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
                   onClick={() => toggleSpecialty(specialty)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     selectedSpecialties.includes(specialty)
-                      ? 'bg-purple-600 text-white'
+                      ? 'bg-whatsapp-500 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -788,7 +784,7 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
               <select
                 name="modality"
                 id="modality"
-                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500 text-sm"
+                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-whatsapp-500 focus:ring-whatsapp-500 text-sm"
                 required
               >
                 <option value="online">Solo online</option>
@@ -821,7 +817,7 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
                   onClick={() => toggleLanguage(language)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     selectedLanguages.includes(language)
-                      ? 'bg-purple-600 text-white'
+                      ? 'bg-whatsapp-500 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -859,7 +855,7 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
                 id="isVolunteer"
                 type="checkbox"
                 name="isVolunteer"
-                className="w-4 h-4 border-gray-300 rounded text-purple-600 focus:ring-purple-500"
+                className="w-4 h-4 border-gray-300 rounded text-whatsapp-600 focus:ring-whatsapp-500"
               />
               <Label htmlFor="isVolunteer" className="ml-2 text-sm text-gray-600">
                 Ofrezco sesiones gratuitas o de bajo costo
@@ -881,15 +877,15 @@ function ProfessionalInfoForm({ onSuccess }: { onSuccess: () => void }) {
             />
           </div>
 
-          <div className="bg-purple-50 rounded-lg p-4">
-            <p className="text-sm text-purple-800">
+          <div className="bg-whatsapp-50 rounded-lg p-4">
+            <p className="text-sm text-whatsapp-800">
               <strong>Nota:</strong> Tu perfil sera revisado por nuestro equipo para verificacion.
               Mientras tanto, podras acceder a tu dashboard y configurar tu perfil.
             </p>
           </div>
 
           <Button
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+            className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             type="submit"
             disabled={isLoading}
           >
@@ -919,8 +915,8 @@ function SignupSuccess({ userType, email }: { userType: UserType; email: string 
         </p>
 
         {userType === 'profesional' && (
-          <div className="bg-purple-50 rounded-lg p-4 text-left">
-            <p className="text-sm text-purple-800">
+          <div className="bg-whatsapp-50 rounded-lg p-4 text-left">
+            <p className="text-sm text-whatsapp-800">
               Tu perfil profesional ha sido enviado para verificacion.
               Te notificaremos por correo cuando este aprobado.
             </p>
@@ -928,7 +924,7 @@ function SignupSuccess({ userType, email }: { userType: UserType; email: string 
         )}
 
         <Link to="/login" className="block">
-          <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+          <Button className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
             Iniciar sesion
           </Button>
         </Link>

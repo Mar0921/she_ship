@@ -28,49 +28,49 @@ export default function LandingPage() {
 
 function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-purple-50 to-white">
+    <section className="relative overflow-hidden bg-gradient-to-b from-purple-600 via-purple-700 to-purple-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
         <div className="text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
             <Shield className="w-4 h-4" />
             Espacio seguro y confidencial
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-            Tu bienestar emocional
-            <span className="text-purple-600"> merece atención</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            ¿Necesitas apoyo emocional?
+            <span className="block text-purple-200">Estamos aquí para ayudarte</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-            PurpleMatch es una plataforma diseñada para acompañarte en tu viaje hacia el bienestar emocional. 
-            Conecta con profesionales, únete a una comunidad de apoyo y accede a recursos diseñados para ti.
+          <p className="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+            PurpleMatch te conecta con profesionales de salud mental especializados. 
+            Recibe el apoyo que mereces en un entorno seguro y sin juicios.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Link to="/signup">
-              <Button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-lg rounded-xl w-full sm:w-auto">
-                Registrarse
+              <Button className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white px-8 py-6 text-lg rounded-xl w-full sm:w-auto shadow-lg hover:shadow-xl transition-all">
+                ¡Escríbenos!
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
             <Link to="/login">
-              <Button variant="outline" className="border-purple-200 text-purple-700 hover:bg-purple-50 px-8 py-6 text-lg rounded-xl w-full sm:w-auto">
+              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg rounded-xl w-full sm:w-auto backdrop-blur-sm">
                 Iniciar Sesión
               </Button>
             </Link>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500">
+          <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-white/80">
             <div className="flex items-center gap-2">
-              <Check className="w-5 h-5 text-green-500" />
+              <Check className="w-5 h-5 text-whatsapp-400" />
               <span>Profesionales verificados</span>
             </div>
             <div className="flex items-center gap-2">
-              <Check className="w-5 h-5 text-green-500" />
+              <Check className="w-5 h-5 text-whatsapp-400" />
               <span>100% confidencial</span>
             </div>
             <div className="flex items-center gap-2">
-              <Check className="w-5 h-5 text-green-500" />
+              <Check className="w-5 h-5 text-whatsapp-400" />
               <span>Anonimato opcional</span>
             </div>
           </div>
@@ -78,8 +78,8 @@ function HeroSection() {
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-purple-200/30 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-64 h-64 bg-whatsapp-500/30 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl" />
     </section>
   );
 }
@@ -117,7 +117,7 @@ function FeaturesPreviewSection() {
         'Sesiones online y presenciales',
         'Primera consulta de evaluación'
       ],
-      color: 'bg-purple-100 text-purple-600',
+      color: 'bg-whatsapp-100 text-whatsapp-600',
       badge: 'Próximamente'
     },
     {
@@ -130,7 +130,7 @@ function FeaturesPreviewSection() {
         'Compartición anónima opcional',
         'Moderación activa 24/7'
       ],
-      color: 'bg-pink-100 text-pink-600',
+      color: 'bg-whatsapp-100 text-whatsapp-600',
       badge: 'Próximamente'
     },
     {
@@ -143,13 +143,13 @@ function FeaturesPreviewSection() {
         'Líneas de emergencia disponibles',
         'Contenido actualizado regularmente'
       ],
-      color: 'bg-violet-100 text-violet-600',
+      color: 'bg-whatsapp-100 text-whatsapp-600',
       badge: 'Próximamente'
     }
   ];
 
   return (
-    <section className="py-20 bg-purple-50">
+    <section className="py-20 bg-whatsapp-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -164,13 +164,13 @@ function FeaturesPreviewSection() {
           {features.map((feature) => (
             <div 
               key={feature.title}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-purple-100"
+              className="bg-white rounded-2xl p-8 shadow-sm border border-whatsapp-100"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className={`w-14 h-14 ${feature.color} rounded-xl flex items-center justify-center`}>
                   <feature.icon className="w-7 h-7" />
                 </div>
-                <span className="text-xs font-medium text-purple-600 bg-purple-100 px-3 py-1 rounded-full">
+                <span className="text-xs font-medium text-whatsapp-600 bg-whatsapp-100 px-3 py-1 rounded-full">
                   {feature.badge}
                 </span>
               </div>
@@ -226,8 +226,9 @@ function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-white relative" style={{ backgroundImage: 'url(/imgFondo3.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="absolute inset-0 bg-white/80"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             ¿Cómo funciona?
@@ -239,13 +240,13 @@ function HowItWorksSection() {
 
         <div className="relative">
           {/* Connection line for desktop */}
-          <div className="hidden lg:block absolute top-12 left-1/2 -translate-x-1/2 w-3/4 h-0.5 bg-purple-200" />
+          <div className="hidden lg:block absolute top-12 left-1/2 -translate-x-1/2 w-3/4 h-0.5 bg-whatsapp-200" />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step) => (
               <div key={step.number} className="relative text-center">
-                <div className="relative inline-flex items-center justify-center w-24 h-24 bg-purple-50 rounded-full mb-6 z-10">
-                  <span className="text-2xl font-bold text-purple-600">{step.number}</span>
+                <div className="relative inline-flex items-center justify-center w-24 h-24 bg-whatsapp-50 rounded-full mb-6 z-10">
+                  <span className="text-2xl font-bold text-whatsapp-600">{step.number}</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{step.title}</h3>
                 <p className="text-gray-600">{step.description}</p>
@@ -278,7 +279,7 @@ function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-20 bg-purple-50">
+    <section className="py-20 bg-whatsapp-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -292,23 +293,10 @@ function TestimonialsSection() {
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
             <div key={testimonial.author} className="bg-white rounded-2xl p-8 shadow-sm">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Sparkles key={i} className="w-4 h-4 text-purple-400" />
-                ))}
-              </div>
               <blockquote className="text-gray-700 mb-6 italic">
                 "{testimonial.quote}"
               </blockquote>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-purple-200 rounded-full flex items-center justify-center">
-                  <span className="text-purple-700 font-semibold">{testimonial.author[0]}</span>
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">{testimonial.author}</p>
-                  <p className="text-sm text-gray-500">{testimonial.membership}</p>
-                </div>
-              </div>
+              <p className="font-medium text-gray-900">- {testimonial.author}</p>
             </div>
           ))}
         </div>
@@ -322,9 +310,7 @@ function CTASection() {
     <section className="py-20 bg-purple-600">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-            <Heart className="w-8 h-8 text-white" />
-          </div>
+          <img src="/ImgMujerPieza.png" alt="Mujer" className="w-16 h-16 object-contain" />
         </div>
 
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -336,7 +322,7 @@ function CTASection() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link to="/signup">
-            <Button className="bg-white text-purple-600 hover:bg-purple-50 px-8 py-6 text-lg rounded-xl w-full sm:w-auto">
+            <Button className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white px-8 py-6 text-lg rounded-xl w-full sm:w-auto shadow-lg hover:shadow-xl transition-all">
               Crear Mi Cuenta
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>

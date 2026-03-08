@@ -65,7 +65,7 @@ export default function DashboardProfesionalPage() {
     return (
       <Layout showFooter={false}>
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-whatsapp-600"></div>
         </div>
       </Layout>
     );
@@ -76,8 +76,8 @@ export default function DashboardProfesionalPage() {
       <Layout showFooter={false}>
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center max-w-md mx-auto px-4">
-            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <AlertCircle className="w-8 h-8 text-purple-600" />
+            <div className="w-16 h-16 bg-whatsapp-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <AlertCircle className="w-8 h-8 text-whatsapp-600" />
             </div>
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
               No tienes perfil profesional
@@ -86,7 +86,7 @@ export default function DashboardProfesionalPage() {
               Para acceder al dashboard profesional, primero debes registrarte como profesional.
             </p>
             <Button
-              className="bg-purple-600 hover:bg-purple-700 text-white"
+              className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
               onClick={() => window.location.href = '/signup'}
             >
               Registrarse como profesional
@@ -114,8 +114,8 @@ export default function DashboardProfesionalPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center">
-                  <span className="text-purple-600 font-bold text-xl">
+                <div className="w-14 h-14 bg-whatsapp-100 rounded-full flex items-center justify-center">
+                  <span className="text-whatsapp-600 font-bold text-xl">
                     {profile.fullName.charAt(0)}
                   </span>
                 </div>
@@ -170,7 +170,7 @@ export default function DashboardProfesionalPage() {
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                       activeTab === tab.id
-                        ? 'border-purple-600 text-purple-600'
+                        ? 'border-whatsapp-600 text-whatsapp-600'
                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
@@ -313,7 +313,7 @@ function ResumenTab({ profile }: { profile: ProfessionalProfile }) {
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-gray-900">Proximas citas</h2>
-          <Button variant="ghost" className="text-purple-600 hover:text-purple-700">
+          <Button variant="ghost" className="text-whatsapp-600 hover:text-whatsapp-700">
             Ver todas
           </Button>
         </div>
@@ -326,8 +326,8 @@ function ResumenTab({ profile }: { profile: ProfessionalProfile }) {
                 className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                    <span className="text-purple-600 font-medium">
+                  <div className="w-10 h-10 bg-whatsapp-100 rounded-full flex items-center justify-center">
+                    <span className="text-whatsapp-600 font-medium">
                       {session.patientName.charAt(0)}
                     </span>
                   </div>
@@ -350,7 +350,7 @@ function ResumenTab({ profile }: { profile: ProfessionalProfile }) {
                       <><MapPin className="w-3 h-3" /> Presencial</>
                     )}
                   </span>
-                  <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-white">
+                  <Button size="sm" className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
                     Iniciar
                   </Button>
                 </div>
@@ -367,18 +367,18 @@ function ResumenTab({ profile }: { profile: ProfessionalProfile }) {
 
       {/* Quick Actions */}
       <div className="grid md:grid-cols-3 gap-4">
-        <button className="p-4 bg-white border border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-colors text-left">
-          <MessageSquare className="w-6 h-6 text-purple-600 mb-2" />
+        <button className="p-4 bg-white border border-gray-200 rounded-xl hover:border-whatsapp-300 hover:bg-whatsapp-50 transition-colors text-left">
+          <MessageSquare className="w-6 h-6 text-whatsapp-600 mb-2" />
           <h3 className="font-medium text-gray-900">Mensajes</h3>
           <p className="text-sm text-gray-500">3 sin leer</p>
         </button>
-        <button className="p-4 bg-white border border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-colors text-left">
-          <Heart className="w-6 h-6 text-purple-600 mb-2" />
+        <button className="p-4 bg-white border border-gray-200 rounded-xl hover:border-whatsapp-300 hover:bg-whatsapp-50 transition-colors text-left">
+          <Heart className="w-6 h-6 text-whatsapp-600 mb-2" />
           <h3 className="font-medium text-gray-900">Solicitudes</h3>
           <p className="text-sm text-gray-500">2 nuevas</p>
         </button>
-        <button className="p-4 bg-white border border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-colors text-left">
-          <Settings className="w-6 h-6 text-purple-600 mb-2" />
+        <button className="p-4 bg-white border border-gray-200 rounded-xl hover:border-whatsapp-300 hover:bg-whatsapp-50 transition-colors text-left">
+          <Settings className="w-6 h-6 text-whatsapp-600 mb-2" />
           <h3 className="font-medium text-gray-900">Configuracion</h3>
           <p className="text-sm text-gray-500">Horarios y tarifas</p>
         </button>
@@ -401,7 +401,7 @@ function StatCard({
   suffix?: string;
 }) {
   const colors = {
-    purple: 'bg-purple-100 text-purple-600',
+    purple: 'bg-whatsapp-100 text-whatsapp-600',
     blue: 'bg-blue-100 text-blue-600',
     yellow: 'bg-yellow-100 text-yellow-600',
     green: 'bg-green-100 text-green-600',
@@ -441,7 +441,7 @@ function CitasTab() {
             onClick={() => setFilter(f)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === f
-                ? 'bg-purple-100 text-purple-700'
+                ? 'bg-whatsapp-100 text-whatsapp-700'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
@@ -457,8 +457,8 @@ function CitasTab() {
             <div key={session.id} className="p-4 hover:bg-gray-50 transition-colors">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                    <span className="text-purple-600 font-semibold">
+                  <div className="w-12 h-12 bg-whatsapp-100 rounded-full flex items-center justify-center">
+                    <span className="text-whatsapp-600 font-semibold">
                       {session.patientName.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
@@ -485,7 +485,7 @@ function CitasTab() {
                   <Button variant="outline" size="sm">
                     Ver detalles
                   </Button>
-                  <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-white">
+                  <Button size="sm" className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
                     Iniciar sesion
                   </Button>
                 </div>
@@ -535,8 +535,8 @@ function PacientesTab() {
             <div key={patient.id} className="p-4 hover:bg-gray-50 transition-colors">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                    <span className="text-purple-600 font-semibold">
+                  <div className="w-12 h-12 bg-whatsapp-100 rounded-full flex items-center justify-center">
+                    <span className="text-whatsapp-600 font-semibold">
                       {patient.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
@@ -558,7 +558,7 @@ function PacientesTab() {
                   <Button variant="outline" size="sm">
                     Ver historial
                   </Button>
-                  <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-white">
+                  <Button size="sm" className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
                     Mensaje
                   </Button>
                 </div>
@@ -621,10 +621,12 @@ function PerfilTab({ profile }: { profile: ProfessionalProfile }) {
         <div className="flex flex-col md:flex-row gap-6">
           {/* Photo */}
           <div className="flex-shrink-0">
-            <div className="w-32 h-32 bg-purple-100 rounded-xl flex items-center justify-center">
-              <span className="text-purple-600 font-bold text-4xl">
-                {profile.fullName.charAt(0)}
-              </span>
+            <div className="w-32 h-32 bg-whatsapp-100 rounded-xl flex items-center justify-center overflow-hidden">
+              <img 
+                src="/imgEstudiando2.png" 
+                alt="Foto de perfil" 
+                className="w-full h-full object-cover object-top"
+              />
             </div>
           </div>
 
@@ -641,7 +643,7 @@ function PerfilTab({ profile }: { profile: ProfessionalProfile }) {
               {profile.specialties.map((specialty) => (
                 <span
                   key={specialty}
-                  className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium"
+                  className="px-3 py-1 bg-whatsapp-100 text-whatsapp-700 rounded-full text-sm font-medium"
                 >
                   {specialty}
                 </span>
@@ -656,14 +658,14 @@ function PerfilTab({ profile }: { profile: ProfessionalProfile }) {
                     value={editedDescription}
                     onChange={(e) => setEditedDescription(e.target.value)}
                     rows={4}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:border-whatsapp-500 focus:ring-whatsapp-500"
                     placeholder="Describe tu enfoque terapeutico..."
                   />
                 </div>
                 <Button
                   onClick={handleSave}
                   disabled={isPending}
-                  className="bg-purple-600 hover:bg-purple-700 text-white"
+                  className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
                 >
                   <Save className="w-4 h-4 mr-2" />
                   {isPending ? 'Guardando...' : 'Guardar cambios'}
@@ -883,7 +885,7 @@ function MensajesTab() {
                 placeholder="Buscar pacientes..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-whatsapp-500"
               />
             </div>
           </div>
@@ -894,7 +896,7 @@ function MensajesTab() {
                 key={conv.id}
                 onClick={() => handleSelectConversation(conv)}
                 className={`w-full p-4 flex items-start gap-3 hover:bg-gray-50 transition-colors border-b border-gray-50 text-left ${
-                  selectedConversation?.id === conv.id ? 'bg-purple-50' : ''
+                  selectedConversation?.id === conv.id ? 'bg-whatsapp-50' : ''
                 }`}
               >
                 <div className="relative flex-shrink-0">
@@ -913,7 +915,7 @@ function MensajesTab() {
                   <div className="flex items-center justify-between">
                     <p className="text-sm text-gray-500 truncate">{conv.lastMessage}</p>
                     {conv.unreadCount > 0 && (
-                      <span className="w-5 h-5 bg-purple-600 text-white text-xs rounded-full flex items-center justify-center flex-shrink-0 ml-2">
+                      <span className="w-5 h-5 bg-whatsapp-500 text-white text-xs rounded-full flex items-center justify-center flex-shrink-0 ml-2">
                         {conv.unreadCount}
                       </span>
                     )}
@@ -963,7 +965,7 @@ function MensajesTab() {
                     <div className={`max-w-[70%] ${message.senderId === 'me' ? 'order-2' : ''}`}>
                       <div className={`px-4 py-2 rounded-2xl ${
                         message.senderId === 'me'
-                          ? 'bg-purple-600 text-white rounded-br-md'
+                          ? 'bg-whatsapp-500 text-white rounded-br-md'
                           : 'bg-white text-gray-900 rounded-bl-md shadow-sm'
                       }`}>
                         <p className="text-sm">{message.content}</p>
@@ -973,7 +975,7 @@ function MensajesTab() {
                         {message.senderId === 'me' && (
                           <span className="text-gray-400">
                             {message.status === 'read' ? (
-                              <CheckCheck className="w-3 h-3 text-purple-500" />
+                              <CheckCheck className="w-3 h-3 text-whatsapp-500" />
                             ) : message.status === 'delivered' ? (
                               <CheckCheck className="w-3 h-3" />
                             ) : (
@@ -996,12 +998,12 @@ function MensajesTab() {
                     onChange={(e) => setNewMessage(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                     placeholder="Escribe un mensaje..."
-                    className="flex-1 px-4 py-2 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="flex-1 px-4 py-2 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-whatsapp-500"
                   />
                   <Button
                     onClick={handleSendMessage}
                     disabled={!newMessage.trim()}
-                    className="bg-purple-600 hover:bg-purple-700 text-white"
+                    className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
                   >
                     <Send className="w-4 h-4" />
                   </Button>
@@ -1011,8 +1013,8 @@ function MensajesTab() {
           ) : (
             <div className="flex-1 flex items-center justify-center bg-gray-50">
               <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MessageSquare className="w-8 h-8 text-purple-600" />
+                <div className="w-16 h-16 bg-whatsapp-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MessageSquare className="w-8 h-8 text-whatsapp-600" />
                 </div>
                 <h2 className="text-lg font-semibold text-gray-900 mb-2">Mensajes de pacientes</h2>
                 <p className="text-gray-500 max-w-sm">
@@ -1110,7 +1112,7 @@ function AjustesTab({ profile }: { profile: ProfessionalProfile }) {
                 }}
                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                   selectedSpecialties.includes(specialty)
-                    ? 'bg-purple-600 text-white'
+                    ? 'bg-whatsapp-500 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -1166,7 +1168,7 @@ function AjustesTab({ profile }: { profile: ProfessionalProfile }) {
                 }}
                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                   selectedLanguages.includes(language)
-                    ? 'bg-purple-600 text-white'
+                    ? 'bg-whatsapp-500 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -1208,7 +1210,7 @@ function AjustesTab({ profile }: { profile: ProfessionalProfile }) {
         <Button
           type="submit"
           disabled={isPending}
-          className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+          className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
         >
           {isPending ? 'Guardando...' : 'Guardar configuracion'}
         </Button>

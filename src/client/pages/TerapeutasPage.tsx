@@ -295,7 +295,7 @@ function Questionnaire({
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-purple-600 transition-all duration-300"
+            className="h-full bg-whatsapp-500 transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -315,18 +315,18 @@ function Questionnaire({
               onClick={() => handleOptionSelect(option.value)}
               className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
                 isOptionSelected(option.value)
-                  ? 'border-purple-600 bg-purple-50'
-                  : 'border-gray-200 hover:border-purple-200'
+                  ? 'border-whatsapp-600 bg-whatsapp-50'
+                  : 'border-gray-200 hover:border-whatsapp-200'
               }`}
             >
               <div className="flex items-center justify-between">
                 <span className={`font-medium ${
-                  isOptionSelected(option.value) ? 'text-purple-700' : 'text-gray-700'
+                  isOptionSelected(option.value) ? 'text-whatsapp-700' : 'text-gray-700'
                 }`}>
                   {option.label}
                 </span>
                 {isOptionSelected(option.value) && (
-                  <Check className="w-5 h-5 text-purple-600" />
+                  <Check className="w-5 h-5 text-whatsapp-600" />
                 )}
               </div>
             </button>
@@ -348,7 +348,7 @@ function Questionnaire({
           <Button
             onClick={handleNext}
             disabled={!canProceed()}
-            className="bg-purple-600 hover:bg-purple-700 text-white"
+            className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
           >
             {currentStep === totalSteps ? 'Ver resultados' : 'Siguiente'}
             <ArrowRight className="w-4 h-4 ml-2" />
@@ -399,7 +399,7 @@ function TherapistResults({ onBack }: TherapistResultsProps) {
         <div>
           <button
             onClick={onBack}
-            className="flex items-center text-purple-600 hover:text-purple-700 mb-2"
+            className="flex items-center text-whatsapp-600 hover:text-whatsapp-700 mb-2"
           >
             <ArrowLeft className="w-4 h-4 mr-1" />
             Modificar preferencias
@@ -427,7 +427,7 @@ function TherapistResults({ onBack }: TherapistResultsProps) {
               onClick={() => setModalityFilter(filter)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 modalityFilter === filter
-                  ? 'bg-purple-100 text-purple-700'
+                  ? 'bg-whatsapp-100 text-whatsapp-700'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -441,7 +441,7 @@ function TherapistResults({ onBack }: TherapistResultsProps) {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-3 py-2 bg-gray-100 rounded-lg text-sm text-gray-700 border-0 focus:ring-2 focus:ring-purple-500"
+            className="px-3 py-2 bg-gray-100 rounded-lg text-sm text-gray-700 border-0 focus:ring-2 focus:ring-whatsapp-500"
           >
             <option value="recomendados">Recomendados</option>
             <option value="rating">Mejor valorados</option>
@@ -486,8 +486,8 @@ function TherapistCard({ therapist, onContact }: TherapistCardProps) {
       <div className="flex gap-6">
         {/* Avatar */}
         <div className="flex-shrink-0">
-          <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center">
-            <span className="text-2xl font-bold text-purple-600">{therapist.avatar}</span>
+          <div className="w-20 h-20 bg-whatsapp-100 rounded-full flex items-center justify-center">
+            <span className="text-2xl font-bold text-whatsapp-600">{therapist.avatar}</span>
           </div>
         </div>
 
@@ -510,7 +510,7 @@ function TherapistCard({ therapist, onContact }: TherapistCardProps) {
             <button
               onClick={() => setSaved(!saved)}
               className={`p-2 rounded-full transition-colors ${
-                saved ? 'text-purple-600 bg-purple-100' : 'text-gray-400 hover:text-purple-600'
+                saved ? 'text-whatsapp-600 bg-whatsapp-100' : 'text-gray-400 hover:text-whatsapp-600'
               }`}
             >
               <Bookmark className={`w-5 h-5 ${saved ? 'fill-current' : ''}`} />
@@ -522,7 +522,7 @@ function TherapistCard({ therapist, onContact }: TherapistCardProps) {
             {therapist.specialties.map((specialty) => (
               <span
                 key={specialty}
-                className="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-sm"
+                className="px-3 py-1 bg-whatsapp-50 text-whatsapp-700 rounded-full text-sm"
               >
                 {specialty}
               </span>
@@ -574,10 +574,10 @@ function TherapistCard({ therapist, onContact }: TherapistCardProps) {
             <div className="flex items-center gap-3">
               <Button
                 onClick={onContact}
-                className="bg-purple-600 hover:bg-purple-700 text-white"
+                className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
-                Contactar
+                Conectar
               </Button>
             </div>
           </div>
@@ -596,6 +596,9 @@ function ContactModal({ therapist, onClose }: ContactModalProps) {
   const navigate = useNavigate();
 
   const handleStartChat = () => {
+    // Save the professional ID to localStorage for later use (Conectar button)
+    localStorage.setItem('contactedProfessionalId', therapist.id);
+    localStorage.setItem('contactedProfessionalName', therapist.name);
     // Navigate to chat with this therapist
     navigate(`/chat/${therapist.id}`);
     onClose();
@@ -607,8 +610,8 @@ function ContactModal({ therapist, onClose }: ContactModalProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-              <span className="text-lg font-bold text-purple-600">{therapist.avatar}</span>
+            <div className="w-12 h-12 bg-whatsapp-100 rounded-full flex items-center justify-center">
+              <span className="text-lg font-bold text-whatsapp-600">{therapist.avatar}</span>
             </div>
             <div>
               <h2 className="text-lg font-semibold text-gray-900">Contactar a {therapist.name}</h2>
@@ -626,8 +629,8 @@ function ContactModal({ therapist, onClose }: ContactModalProps) {
         {/* Content */}
         <div className="p-6">
           <div className="text-center mb-6">
-            <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <MessageCircle className="w-10 h-10 text-purple-600" />
+            <div className="w-20 h-20 bg-whatsapp-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <MessageCircle className="w-10 h-10 text-whatsapp-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Inicia una conversacion
@@ -637,8 +640,8 @@ function ContactModal({ therapist, onClose }: ContactModalProps) {
             </p>
           </div>
 
-          <div className="bg-purple-50 rounded-xl p-4 mb-6">
-            <p className="text-sm text-purple-700">
+          <div className="bg-whatsapp-50 rounded-xl p-4 mb-6">
+            <p className="text-sm text-whatsapp-700">
               <strong>Nota:</strong> La terapeuta suele responder en un plazo de 24-48 horas habiles.
             </p>
           </div>
@@ -649,7 +652,7 @@ function ContactModal({ therapist, onClose }: ContactModalProps) {
             </Button>
             <Button
               onClick={handleStartChat}
-              className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
+              className="flex-1 bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             >
               <Send className="w-4 h-4 mr-2" />
               Ir al chat

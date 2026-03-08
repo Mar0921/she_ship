@@ -235,13 +235,29 @@ export default function ChatPage() {
 
   useEffect(() => {
     if (recipientId) {
+      // First try to find in API conversations
       const conv = conversations.find(c => c.recipientId === recipientId);
       if (conv) {
         setSelectedConversation(conv);
         setShowChatOnMobile(true);
+      } else if (professionalData) {
+        // If not found in API but we have professional data, create a new conversation
+        const newConv: Conversation = {
+          id: recipientId,
+          recipientId: recipientId,
+          recipientName: professionalData.fullName || 'Profesional',
+          recipientAvatar: professionalData.avatar || 'PR',
+          recipientRole: 'therapist',
+          lastMessage: 'Nueva conversación',
+          lastMessageTime: new Date(),
+          unreadCount: 0,
+          isOnline: false
+        };
+        setSelectedConversation(newConv);
+        setShowChatOnMobile(true);
       }
     }
-  }, [recipientId, conversations]);
+  }, [recipientId, conversations, professionalData]);
 
   const filteredConversations = allConversations.filter((conv: Conversation) =>
     conv.recipientName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -276,7 +292,7 @@ export default function ChatPage() {
                 placeholder="Buscar conversaciones..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-whatsapp-500"
               />
             </div>
           </div>
@@ -289,15 +305,15 @@ export default function ChatPage() {
                   key={conv.id}
                   onClick={() => handleSelectConversation(conv)}
                   className={`w-full p-4 flex items-start gap-3 hover:bg-gray-50 transition-colors border-b border-gray-50 ${
-                    selectedConversation?.id === conv.id ? 'bg-purple-50' : ''
+                    selectedConversation?.id === conv.id ? 'bg-whatsapp-50' : ''
                   }`}
                 >
                   <div className="relative flex-shrink-0">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                      conv.recipientRole === 'therapist' ? 'bg-purple-100' : 'bg-blue-100'
+                      conv.recipientRole === 'therapist' ? 'bg-whatsapp-100' : 'bg-blue-100'
                     }`}>
                       <span className={`font-semibold ${
-                        conv.recipientRole === 'therapist' ? 'text-purple-600' : 'text-blue-600'
+                        conv.recipientRole === 'therapist' ? 'text-whatsapp-600' : 'text-blue-600'
                       }`}>
                         {conv.recipientAvatar}
                       </span>
@@ -316,7 +332,7 @@ export default function ChatPage() {
                     <div className="flex items-center justify-between">
                       <p className="text-sm text-gray-500 truncate">{conv.lastMessage}</p>
                       {conv.unreadCount > 0 && (
-                        <span className="w-5 h-5 bg-purple-600 text-white text-xs rounded-full flex items-center justify-center flex-shrink-0 ml-2">
+                        <span className="w-5 h-5 bg-whatsapp-500 text-white text-xs rounded-full flex items-center justify-center flex-shrink-0 ml-2">
                           {conv.unreadCount}
                         </span>
                       )}
@@ -327,7 +343,7 @@ export default function ChatPage() {
             ) : (
               <div className="p-8 text-center">
                 <p className="text-gray-500">No hay conversaciones</p>
-                <Link to="/terapeutas" className="text-purple-600 text-sm hover:underline mt-2 inline-block">
+                <Link to="/terapeutas" className="text-whatsapp-600 text-sm hover:underline mt-2 inline-block">
                   Buscar terapeutas
                 </Link>
               </div>
@@ -347,15 +363,15 @@ export default function ChatPage() {
           ) : (
             <div className="flex-1 flex items-center justify-center bg-gray-50">
               <div className="text-center">
-                <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Send className="w-8 h-8 text-purple-600" />
+                <div className="w-20 h-20 bg-whatsapp-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Send className="w-8 h-8 text-whatsapp-600" />
                 </div>
                 <h2 className="text-xl font-semibold text-gray-900 mb-2">Tus mensajes</h2>
                 <p className="text-gray-500 max-w-sm">
                   Selecciona una conversacion para ver los mensajes o contacta con un terapeuta
                 </p>
                 <Link to="/terapeutas">
-                  <Button className="mt-4 bg-purple-600 hover:bg-purple-700 text-white">
+                  <Button className="mt-4 bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
                     Buscar terapeutas
                   </Button>
                 </Link>
@@ -439,10 +455,10 @@ function ChatView({ conversation, onBack }: ChatViewProps) {
           </button>
           <div className="relative">
             <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-              conversation.recipientRole === 'therapist' ? 'bg-purple-100' : 'bg-blue-100'
+              conversation.recipientRole === 'therapist' ? 'bg-whatsapp-100' : 'bg-blue-100'
             }`}>
               <span className={`font-semibold ${
-                conversation.recipientRole === 'therapist' ? 'text-purple-600' : 'text-blue-600'
+                conversation.recipientRole === 'therapist' ? 'text-whatsapp-600' : 'text-blue-600'
               }`}>
                 {conversation.recipientAvatar}
               </span>
@@ -493,14 +509,14 @@ function ChatView({ conversation, onBack }: ChatViewProps) {
               onKeyDown={handleKeyPress}
               placeholder="Escribe un mensaje..."
               rows={1}
-              className="w-full px-4 py-3 bg-gray-100 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 bg-gray-100 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-whatsapp-500"
               style={{ minHeight: '48px', maxHeight: '120px' }}
             />
           </div>
           <Button
             onClick={handleSend}
             disabled={!newMessage.trim()}
-            className="bg-purple-600 hover:bg-purple-700 text-white h-12 w-12 p-0 rounded-xl"
+            className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white h-12 w-12 p-0 rounded-xl"
           >
             <Send className="w-5 h-5" />
           </Button>
@@ -521,7 +537,7 @@ function MessageBubble({ message, isOwn }: MessageBubbleProps) {
       <div className={`max-w-[75%] ${isOwn ? 'order-2' : ''}`}>
         <div className={`px-4 py-3 rounded-2xl ${
           isOwn
-            ? 'bg-purple-600 text-white rounded-br-md'
+            ? 'bg-whatsapp-500 text-white rounded-br-md'
             : 'bg-white text-gray-900 rounded-bl-md shadow-sm'
         }`}>
           <p className="text-sm whitespace-pre-wrap">{message.content}</p>
@@ -533,7 +549,7 @@ function MessageBubble({ message, isOwn }: MessageBubbleProps) {
           {isOwn && (
             <span className="text-gray-400">
               {message.status === 'read' ? (
-                <CheckCheck className="w-3 h-3 text-purple-500" />
+                <CheckCheck className="w-3 h-3 text-whatsapp-500" />
               ) : message.status === 'delivered' ? (
                 <CheckCheck className="w-3 h-3" />
               ) : (

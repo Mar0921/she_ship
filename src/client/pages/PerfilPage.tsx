@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Heart,
   User,
@@ -114,6 +114,27 @@ export default function PerfilPage() {
 
   return (
     <Layout showFooter={false}>
+      {/* Profile Header */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center gap-6">
+            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-whatsapp-600">
+              <img src="/imgHappy.png" alt="Avatar" className="w-full h-full object-cover" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-2xl font-bold text-gray-900">{user.handle || 'Usuario'}</h1>
+                <span className="px-3 py-1 bg-whatsapp-600 text-white rounded-full text-sm flex items-center gap-1">
+                  <Lock className="w-3 h-3" />
+                  Perfil Privado
+                </span>
+              </div>
+              <p className="text-gray-500 mb-1">Miembro desde marzo 2026</p>
+              <p className="text-gray-600 italic">"Cada dia es una nueva oportunidad"</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Tabs */}
@@ -128,7 +149,7 @@ export default function PerfilPage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-colors ${
                     isActive
-                      ? 'bg-purple-100 text-purple-700'
+                      ? 'bg-whatsapp-100 text-whatsapp-700'
                       : 'text-gray-600 hover:bg-gray-50'
                   }`}
                 >
@@ -152,6 +173,24 @@ export default function PerfilPage() {
 }
 
 function ResumenTab({ user }: { user: { handle?: string } }) {
+  const navigate = useNavigate();
+  const [contactedProfessional, setContactedProfessional] = useState<{id: string, name: string} | null>(null);
+
+  useEffect(() => {
+    // Check for contacted professional from localStorage
+    const professionalId = localStorage.getItem('contactedProfessionalId');
+    const professionalName = localStorage.getItem('contactedProfessionalName');
+    if (professionalId && professionalName) {
+      setContactedProfessional({ id: professionalId, name: professionalName });
+    }
+  }, []);
+
+  const handleConectar = () => {
+    if (contactedProfessional) {
+      // Navigate to chat with this professional and show the message interface
+      navigate(`/chat/${contactedProfessional.id}`);
+    }
+  };
   const stats = [
     { label: 'Entradas en diario', value: '12', icon: BookOpen },
     { label: 'Sesiones completadas', value: '8', icon: Calendar },
@@ -161,28 +200,6 @@ function ResumenTab({ user }: { user: { handle?: string } }) {
 
   return (
     <div className="space-y-6">
-      {/* Profile Card */}
-      <div className="bg-white rounded-2xl p-6 shadow-sm">
-        <div className="flex items-start gap-6">
-          <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center">
-            <span className="text-3xl font-bold text-purple-600">
-              {user.handle?.[0]?.toUpperCase() || 'U'}
-            </span>
-          </div>
-          <div className="flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-2xl font-bold text-gray-900">{user.handle || 'Usuario'}</h1>
-              <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm flex items-center gap-1">
-                <Lock className="w-3 h-3" />
-                Perfil Privado
-              </span>
-            </div>
-            <p className="text-gray-500 mb-1">Miembro desde marzo 2026</p>
-            <p className="text-gray-600 italic">"Cada dia es una nueva oportunidad"</p>
-          </div>
-        </div>
-      </div>
-
       {/* Stats Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat) => {
@@ -190,8 +207,8 @@ function ResumenTab({ user }: { user: { handle?: string } }) {
           return (
             <div key={stat.label} className="bg-white rounded-2xl p-6 shadow-sm">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-purple-600" />
+                <div className="w-10 h-10 bg-whatsapp-100 rounded-xl flex items-center justify-center">
+                  <Icon className="w-5 h-5 text-whatsapp-600" />
                 </div>
               </div>
               <p className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</p>
@@ -206,8 +223,8 @@ function ResumenTab({ user }: { user: { handle?: string } }) {
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Mi Terapeuta</h2>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center">
-              <span className="text-xl font-bold text-purple-600">MG</span>
+            <div className="w-14 h-14 bg-whatsapp-100 rounded-full flex items-center justify-center">
+              <span className="text-xl font-bold text-whatsapp-600">MG</span>
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Dra. Maria Garcia</h3>
@@ -215,12 +232,24 @@ function ResumenTab({ user }: { user: { handle?: string } }) {
               <p className="text-sm text-green-600">Proxima sesion: Jueves 14:00</p>
             </div>
           </div>
-          <Link to="/chat/therapist1">
-            <Button className="bg-purple-600 hover:bg-purple-700 text-white">
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Mensaje
-            </Button>
-          </Link>
+          <div className="flex items-center gap-3">
+            {contactedProfessional ? (
+              <Button 
+                onClick={handleConectar} 
+                className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Conectar
+              </Button>
+            ) : (
+              <Link to="/chat/therapist1">
+                <Button className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Mensaje
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
 
@@ -231,8 +260,8 @@ function ResumenTab({ user }: { user: { handle?: string } }) {
           onClick={() => {}}
           className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4"
         >
-          <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-            <PenLine className="w-6 h-6 text-purple-600" />
+          <div className="w-12 h-12 bg-whatsapp-100 rounded-xl flex items-center justify-center">
+            <PenLine className="w-6 h-6 text-whatsapp-600" />
           </div>
           <div>
             <h3 className="font-semibold text-gray-900">Escribir en diario</h3>
@@ -343,7 +372,7 @@ function DiarioTab() {
           onChange={(e) => setJournalText(e.target.value)}
           placeholder="Escribe tus pensamientos, reflexiones o como ha sido tu dia..."
           rows={4}
-          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none mb-4"
+          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-whatsapp-500 focus:border-transparent resize-none mb-4"
         />
 
         <div className="flex items-center justify-between">
@@ -353,7 +382,7 @@ function DiarioTab() {
           <Button
             onClick={handleSaveEntry}
             disabled={!selectedMood || !journalText.trim()}
-            className="bg-purple-600 hover:bg-purple-700 text-white"
+            className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
           >
             <PenLine className="w-4 h-4 mr-2" />
             Guardar entrada
@@ -390,14 +419,14 @@ function DiarioTab() {
       </div>
 
       {/* Reminder Card */}
-      <div className="bg-purple-50 rounded-2xl p-6 border border-purple-100">
+      <div className="bg-whatsapp-50 rounded-2xl p-6 border border-whatsapp-100">
         <div className="flex items-start gap-4">
-          <div className="w-10 h-10 bg-purple-200 rounded-full flex items-center justify-center flex-shrink-0">
-            <Heart className="w-5 h-5 text-purple-600" />
+          <div className="w-10 h-10 bg-whatsapp-200 rounded-full flex items-center justify-center flex-shrink-0">
+            <Heart className="w-5 h-5 text-whatsapp-600" />
           </div>
           <div>
-            <h3 className="font-semibold text-purple-900 mb-1">Un pequeño recordatorio</h3>
-            <p className="text-purple-700">
+            <h3 className="font-semibold text-whatsapp-900 mb-1">Un pequeño recordatorio</h3>
+            <p className="text-whatsapp-700">
               Escribir regularmente te ayuda a identificar patrones y celebrar tu progreso. No necesitas escribir mucho, solo lo que sientas.
             </p>
           </div>
@@ -457,8 +486,8 @@ function ProgresoTab() {
                       <Check className="w-4 h-4 text-green-600" />
                     </div>
                   ) : (
-                    <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center">
-                      <Target className="w-4 h-4 text-purple-600" />
+                    <div className="w-6 h-6 bg-whatsapp-100 rounded-full flex items-center justify-center">
+                      <Target className="w-4 h-4 text-whatsapp-600" />
                     </div>
                   )}
                   <div>
@@ -468,14 +497,14 @@ function ProgresoTab() {
                     <p className="text-sm text-gray-500">{goal.description}</p>
                   </div>
                 </div>
-                <span className={`text-sm font-medium ${goal.completed ? 'text-green-600' : 'text-purple-600'}`}>
+                <span className={`text-sm font-medium ${goal.completed ? 'text-green-600' : 'text-whatsapp-600'}`}>
                   {goal.progress}%
                 </span>
               </div>
               <div className="h-2 bg-gray-100 rounded-full overflow-hidden ml-9">
                 <div
                   className={`h-full rounded-full transition-all ${
-                    goal.completed ? 'bg-green-500' : 'bg-purple-500'
+                    goal.completed ? 'bg-green-500' : 'bg-whatsapp-500'
                   }`}
                   style={{ width: `${goal.progress}%` }}
                 />
@@ -496,16 +525,16 @@ function ProgresoTab() {
                 key={milestone.id}
                 className={`p-4 rounded-xl text-center ${
                   milestone.achieved
-                    ? 'bg-purple-50 border-2 border-purple-200'
+                    ? 'bg-whatsapp-50 border-2 border-whatsapp-200'
                     : 'bg-gray-50 border-2 border-gray-100 opacity-50'
                 }`}
               >
                 <div className={`w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-2 ${
-                  milestone.achieved ? 'bg-purple-200' : 'bg-gray-200'
+                  milestone.achieved ? 'bg-whatsapp-200' : 'bg-gray-200'
                 }`}>
-                  <Icon className={`w-6 h-6 ${milestone.achieved ? 'text-purple-600' : 'text-gray-400'}`} />
+                  <Icon className={`w-6 h-6 ${milestone.achieved ? 'text-whatsapp-600' : 'text-gray-400'}`} />
                 </div>
-                <p className={`text-sm font-medium ${milestone.achieved ? 'text-purple-700' : 'text-gray-400'}`}>
+                <p className={`text-sm font-medium ${milestone.achieved ? 'text-whatsapp-700' : 'text-gray-400'}`}>
                   {milestone.title}
                 </p>
                 {milestone.achieved && (
@@ -527,8 +556,8 @@ function ProgresoTab() {
             { date: '14 Feb 2026', title: 'Sesion 6: Patrones de pensamiento', notes: 'Identificamos creencias limitantes' }
           ].map((session, index) => (
             <div key={index} className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
-              <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Calendar className="w-5 h-5 text-purple-600" />
+              <div className="w-10 h-10 bg-whatsapp-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Calendar className="w-5 h-5 text-whatsapp-600" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
@@ -579,14 +608,14 @@ function HistorialTab() {
   return (
     <div className="space-y-6">
       {/* Info Banner */}
-      <div className="bg-purple-50 rounded-2xl p-6 border border-purple-100">
+      <div className="bg-whatsapp-50 rounded-2xl p-6 border border-whatsapp-100">
         <div className="flex items-start gap-4">
-          <div className="w-10 h-10 bg-purple-200 rounded-full flex items-center justify-center flex-shrink-0">
-            <Lock className="w-5 h-5 text-purple-600" />
+          <div className="w-10 h-10 bg-whatsapp-200 rounded-full flex items-center justify-center flex-shrink-0">
+            <Lock className="w-5 h-5 text-whatsapp-600" />
           </div>
           <div>
-            <h3 className="font-semibold text-purple-900 mb-1">Informacion privada y segura</h3>
-            <p className="text-purple-700 text-sm">
+            <h3 className="font-semibold text-whatsapp-900 mb-1">Informacion privada y segura</h3>
+            <p className="text-whatsapp-700 text-sm">
               Tu historial clinico es completamente privado. Solo tu y tu terapeuta pueden acceder a esta informacion.
               Puedes actualizar estos datos en cualquier momento.
             </p>
@@ -660,10 +689,10 @@ function HistorialTab() {
                 value={history.notes}
                 onChange={(e) => setHistory({ ...history, notes: e.target.value })}
                 rows={3}
-                className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-whatsapp-500 focus:border-transparent"
               />
             </div>
-            <Button onClick={handleSave} className="bg-purple-600 hover:bg-purple-700 text-white">
+            <Button onClick={handleSave} className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
               Guardar cambios
             </Button>
           </div>
@@ -727,7 +756,7 @@ function HistorialTab() {
             {documents.map((doc) => (
               <div key={doc.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center gap-3">
-                  <FileText className="w-5 h-5 text-purple-600" />
+                  <FileText className="w-5 h-5 text-whatsapp-600" />
                   <div>
                     <p className="font-medium text-gray-900">{doc.name}</p>
                     <p className="text-sm text-gray-500">{doc.date} - {doc.size}</p>
@@ -767,12 +796,12 @@ function AjustesTab({ user }: { user: { handle?: string } }) {
 
         <div className="flex items-center gap-6 mb-6">
           <div className="relative">
-            <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center">
-              <span className="text-3xl font-bold text-purple-600">
+            <div className="w-20 h-20 bg-whatsapp-100 rounded-full flex items-center justify-center">
+              <span className="text-3xl font-bold text-whatsapp-600">
                 {displayName?.[0]?.toUpperCase() || 'U'}
               </span>
             </div>
-            <button className="absolute bottom-0 right-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white shadow-lg">
+            <button className="absolute bottom-0 right-0 w-8 h-8 bg-whatsapp-500 rounded-full flex items-center justify-center text-white shadow-lg">
               <Camera className="w-4 h-4" />
             </button>
           </div>
@@ -817,7 +846,7 @@ function AjustesTab({ user }: { user: { handle?: string } }) {
             />
           </div>
 
-          <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+          <Button className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
             Guardar Cambios
           </Button>
         </div>
@@ -830,8 +859,8 @@ function AjustesTab({ user }: { user: { handle?: string } }) {
         <div className="space-y-4">
           <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                <Lock className="w-5 h-5 text-purple-600" />
+              <div className="w-10 h-10 bg-whatsapp-100 rounded-full flex items-center justify-center">
+                <Lock className="w-5 h-5 text-whatsapp-600" />
               </div>
               <div>
                 <p className="font-medium text-gray-900">Participacion anonima por defecto</p>
@@ -841,7 +870,7 @@ function AjustesTab({ user }: { user: { handle?: string } }) {
             <button
               onClick={() => setAnonymousParticipation(!anonymousParticipation)}
               className={`w-12 h-7 rounded-full transition-colors ${
-                anonymousParticipation ? 'bg-purple-600' : 'bg-gray-300'
+                anonymousParticipation ? 'bg-whatsapp-500' : 'bg-gray-300'
               }`}
             >
               <div className={`w-5 h-5 bg-white rounded-full shadow transition-transform mx-1 ${
@@ -881,7 +910,7 @@ function AjustesTab({ user }: { user: { handle?: string } }) {
                 <button
                   onClick={() => setting.setter(!setting.value)}
                   className={`w-12 h-7 rounded-full transition-colors ${
-                    setting.value ? 'bg-purple-600' : 'bg-gray-300'
+                    setting.value ? 'bg-whatsapp-500' : 'bg-gray-300'
                   }`}
                 >
                   <div className={`w-5 h-5 bg-white rounded-full shadow transition-transform mx-1 ${

@@ -161,7 +161,7 @@ const categories = [
   { id: 'acoso', label: 'Acoso', icon: Shield, color: 'text-red-600 bg-red-100' },
   { id: 'relaciones', label: 'Relaciones', icon: Heart, color: 'text-pink-600 bg-pink-100' },
   { id: 'laboral', label: 'Laboral', icon: Briefcase, color: 'text-blue-600 bg-blue-100' },
-  { id: 'ansiedad', label: 'Ansiedad', icon: Brain, color: 'text-purple-600 bg-purple-100' },
+  { id: 'ansiedad', label: 'Ansiedad', icon: Brain, color: 'text-whatsapp-600 bg-whatsapp-100' },
   { id: 'apoyo', label: 'Apoyo General', icon: MessageCircle, color: 'text-green-600 bg-green-100' }
 ] as const;
 
@@ -283,6 +283,18 @@ export default function ComunidadPage() {
     }));
   };
 
+  const handleCreatePost = (newPost: Omit<Post, 'id' | 'timestamp' | 'likes' | 'comments' | 'hasLiked'>) => {
+    const post: Post = {
+      ...newPost,
+      id: `post-${Date.now()}`,
+      timestamp: 'Ahora',
+      likes: 0,
+      comments: [],
+      hasLiked: false
+    };
+    setPosts([post, ...posts]);
+  };
+
   if (selectedPost) {
     return (
       <Layout>
@@ -322,7 +334,7 @@ export default function ComunidadPage() {
                     onClick={() => setActiveView('posts')}
                     className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-colors ${
                       activeView === 'posts'
-                        ? 'bg-purple-100 text-purple-700'
+                        ? 'bg-whatsapp-100 text-whatsapp-700'
                         : 'text-gray-600 hover:bg-gray-50'
                     }`}
                   >
@@ -333,7 +345,7 @@ export default function ComunidadPage() {
                     onClick={() => setActiveView('sessions')}
                     className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-colors ${
                       activeView === 'sessions'
-                        ? 'bg-purple-100 text-purple-700'
+                        ? 'bg-whatsapp-100 text-whatsapp-700'
                         : 'text-gray-600 hover:bg-gray-50'
                     }`}
                   >
@@ -356,12 +368,12 @@ export default function ComunidadPage() {
                         onClick={() => setSelectedCategory(category.id as Category)}
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
                           isActive
-                            ? 'bg-purple-100 text-purple-700'
+                            ? 'bg-whatsapp-100 text-whatsapp-700'
                             : 'text-gray-600 hover:bg-gray-50'
                         }`}
                       >
                         <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                          isActive ? 'bg-purple-200' : category.color
+                          isActive ? 'bg-whatsapp-200' : category.color
                         }`}>
                           <Icon className="w-4 h-4" />
                         </div>
@@ -380,7 +392,7 @@ export default function ComunidadPage() {
                     const Icon = rule.icon;
                     return (
                       <li key={index} className="flex items-start gap-3">
-                        <Icon className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                        <Icon className="w-4 h-4 text-whatsapp-500 mt-0.5 flex-shrink-0" />
                         <span className="text-sm text-gray-600">{rule.text}</span>
                       </li>
                     );
@@ -401,7 +413,7 @@ export default function ComunidadPage() {
               {activeView === 'posts' && (
                 <Button
                   onClick={() => setShowCreatePost(true)}
-                  className="bg-purple-600 hover:bg-purple-700 text-white"
+                  className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Nueva Publicacion
@@ -416,7 +428,7 @@ export default function ComunidadPage() {
                   onClick={() => setActiveView('posts')}
                   className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                     activeView === 'posts'
-                      ? 'bg-purple-100 text-purple-700'
+                      ? 'bg-whatsapp-100 text-whatsapp-700'
                       : 'text-gray-600'
                   }`}
                 >
@@ -427,7 +439,7 @@ export default function ComunidadPage() {
                   onClick={() => setActiveView('sessions')}
                   className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                     activeView === 'sessions'
-                      ? 'bg-purple-100 text-purple-700'
+                      ? 'bg-whatsapp-100 text-whatsapp-700'
                       : 'text-gray-600'
                   }`}
                 >
@@ -449,7 +461,7 @@ export default function ComunidadPage() {
                       onClick={() => setSelectedCategory(category.id as Category)}
                       className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
                         isActive
-                          ? 'bg-purple-600 text-white'
+                          ? 'bg-whatsapp-500 text-white'
                           : 'bg-white text-gray-600 border border-gray-200'
                       }`}
                     >
@@ -520,7 +532,10 @@ export default function ComunidadPage() {
 
       {/* Create Post Modal */}
       {showCreatePost && (
-        <CreatePostModal onClose={() => setShowCreatePost(false)} />
+        <CreatePostModal 
+          onClose={() => setShowCreatePost(false)} 
+          onSubmit={handleCreatePost}
+        />
       )}
     </Layout>
   );
@@ -542,12 +557,12 @@ function PostCard({ post, onLike, onViewComments }: PostCardProps) {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-            post.isAnonymous ? 'bg-gray-200' : 'bg-purple-100'
+            post.isAnonymous ? 'bg-gray-200' : 'bg-whatsapp-100'
           }`}>
             {post.isAnonymous ? (
               <EyeOff className="w-5 h-5 text-gray-500" />
             ) : (
-              <span className="text-purple-600 font-semibold">{post.author[0]}</span>
+              <span className="text-whatsapp-600 font-semibold">{post.author[0]}</span>
             )}
           </div>
           <div>
@@ -577,7 +592,7 @@ function PostCard({ post, onLike, onViewComments }: PostCardProps) {
           onClick={onLike}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
             post.hasLiked
-              ? 'bg-purple-100 text-purple-600'
+              ? 'bg-whatsapp-100 text-whatsapp-600'
               : 'text-gray-500 hover:bg-gray-100'
           }`}
         >
@@ -660,7 +675,7 @@ function PostDetailView({ post, onBack, onLike, onAddComment }: PostDetailViewPr
       {/* Back button */}
       <button
         onClick={onBack}
-        className="flex items-center gap-2 text-purple-600 hover:text-purple-700 mb-6"
+        className="flex items-center gap-2 text-whatsapp-600 hover:text-whatsapp-700 mb-6"
       >
         <ArrowLeft className="w-4 h-4" />
         Volver a la comunidad
@@ -672,12 +687,12 @@ function PostDetailView({ post, onBack, onLike, onAddComment }: PostDetailViewPr
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-              post.isAnonymous ? 'bg-gray-200' : 'bg-purple-100'
+              post.isAnonymous ? 'bg-gray-200' : 'bg-whatsapp-100'
             }`}>
               {post.isAnonymous ? (
                 <EyeOff className="w-6 h-6 text-gray-500" />
               ) : (
-                <span className="text-purple-600 font-bold text-lg">{post.author[0]}</span>
+                <span className="text-whatsapp-600 font-bold text-lg">{post.author[0]}</span>
               )}
             </div>
             <div>
@@ -707,7 +722,7 @@ function PostDetailView({ post, onBack, onLike, onAddComment }: PostDetailViewPr
             onClick={handleLikePost}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
               postHasLiked
-                ? 'bg-purple-100 text-purple-600'
+                ? 'bg-whatsapp-100 text-whatsapp-600'
                 : 'text-gray-500 hover:bg-gray-100'
             }`}
           >
@@ -732,14 +747,14 @@ function PostDetailView({ post, onBack, onLike, onAddComment }: PostDetailViewPr
             onChange={(e) => setNewComment(e.target.value)}
             placeholder="Escribe un comentario de apoyo..."
             rows={3}
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none mb-3"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-whatsapp-500 focus:border-transparent resize-none mb-3"
           />
           <div className="flex items-center justify-between">
             <button
               onClick={() => setIsAnonymous(!isAnonymous)}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${
                 isAnonymous
-                  ? 'bg-purple-100 text-purple-700'
+                  ? 'bg-whatsapp-100 text-whatsapp-700'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -749,7 +764,7 @@ function PostDetailView({ post, onBack, onLike, onAddComment }: PostDetailViewPr
             <Button
               onClick={handleSubmitComment}
               disabled={!newComment.trim()}
-              className="bg-purple-600 hover:bg-purple-700 text-white"
+              className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             >
               <Send className="w-4 h-4 mr-2" />
               Comentar
@@ -764,12 +779,12 @@ function PostDetailView({ post, onBack, onLike, onAddComment }: PostDetailViewPr
               <div key={comment.id} className="p-4 bg-gray-50 rounded-xl">
                 <div className="flex items-start gap-3">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    comment.isAnonymous ? 'bg-gray-200' : 'bg-purple-100'
+                    comment.isAnonymous ? 'bg-gray-200' : 'bg-whatsapp-100'
                   }`}>
                     {comment.isAnonymous ? (
                       <EyeOff className="w-4 h-4 text-gray-500" />
                     ) : (
-                      <span className="text-purple-600 font-semibold text-sm">{comment.author[0]}</span>
+                      <span className="text-whatsapp-600 font-semibold text-sm">{comment.author[0]}</span>
                     )}
                   </div>
                   <div className="flex-1">
@@ -784,8 +799,8 @@ function PostDetailView({ post, onBack, onLike, onAddComment }: PostDetailViewPr
                       onClick={() => handleLikeComment(comment.id)}
                       className={`flex items-center gap-1 text-sm transition-colors ${
                         comment.hasLiked
-                          ? 'text-purple-600'
-                          : 'text-gray-400 hover:text-purple-600'
+                          ? 'text-whatsapp-600'
+                          : 'text-gray-400 hover:text-whatsapp-600'
                       }`}
                     >
                       <ThumbsUp className={`w-3 h-3 ${comment.hasLiked ? 'fill-current' : ''}`} />
@@ -809,15 +824,25 @@ function PostDetailView({ post, onBack, onLike, onAddComment }: PostDetailViewPr
 
 interface CreatePostModalProps {
   onClose: () => void;
+  onSubmit: (post: Omit<Post, 'id' | 'timestamp' | 'likes' | 'comments' | 'hasLiked'>) => void;
 }
 
-function CreatePostModal({ onClose }: CreatePostModalProps) {
+function CreatePostModal({ onClose, onSubmit }: CreatePostModalProps) {
   const [content, setContent] = useState('');
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category>('apoyo');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!content.trim()) return;
+    
+    onSubmit({
+      author: isAnonymous ? 'Anonima' : 'Usuario',
+      isAnonymous,
+      category: selectedCategory,
+      content: content.trim()
+    });
+    
     toast.success('Publicacion creada');
     onClose();
   };
@@ -854,7 +879,7 @@ function CreatePostModal({ onClose }: CreatePostModalProps) {
                     onClick={() => setSelectedCategory(category.id as Category)}
                     className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${
                       isActive
-                        ? 'bg-purple-100 text-purple-700 ring-2 ring-purple-300'
+                        ? 'bg-whatsapp-100 text-whatsapp-700 ring-2 ring-whatsapp-300'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
@@ -876,7 +901,7 @@ function CreatePostModal({ onClose }: CreatePostModalProps) {
               onChange={(e) => setContent(e.target.value)}
               placeholder="Comparte tu experiencia, pregunta o reflexion..."
               rows={5}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-whatsapp-500 focus:border-transparent resize-none"
             />
           </div>
 
@@ -887,21 +912,21 @@ function CreatePostModal({ onClose }: CreatePostModalProps) {
               onClick={() => setIsAnonymous(!isAnonymous)}
               className={`flex items-center gap-3 w-full p-4 rounded-xl border-2 transition-colors ${
                 isAnonymous
-                  ? 'border-purple-600 bg-purple-50'
+                  ? 'border-whatsapp-600 bg-whatsapp-50'
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
               <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                isAnonymous ? 'bg-purple-200' : 'bg-gray-100'
+                isAnonymous ? 'bg-whatsapp-200' : 'bg-gray-100'
               }`}>
                 {isAnonymous ? (
-                  <EyeOff className="w-5 h-5 text-purple-600" />
+                  <EyeOff className="w-5 h-5 text-whatsapp-600" />
                 ) : (
                   <Eye className="w-5 h-5 text-gray-400" />
                 )}
               </div>
               <div className="text-left">
-                <span className={`font-medium ${isAnonymous ? 'text-purple-700' : 'text-gray-900'}`}>
+                <span className={`font-medium ${isAnonymous ? 'text-whatsapp-700' : 'text-gray-900'}`}>
                   Participar de forma anonima
                 </span>
                 <p className="text-sm text-gray-500">
@@ -919,7 +944,7 @@ function CreatePostModal({ onClose }: CreatePostModalProps) {
             <Button
               type="submit"
               disabled={!content.trim()}
-              className="bg-purple-600 hover:bg-purple-700 text-white"
+              className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             >
               Publicar
             </Button>
@@ -959,8 +984,8 @@ function GroupSessionCard({ session, onViewDetails }: GroupSessionCardProps) {
     <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-            <Video className="w-6 h-6 text-purple-600" />
+          <div className="w-12 h-12 bg-whatsapp-100 rounded-xl flex items-center justify-center">
+            <Video className="w-6 h-6 text-whatsapp-600" />
           </div>
           <div>
             <h3 className="font-semibold text-gray-900">{session.title}</h3>
@@ -995,7 +1020,7 @@ function GroupSessionCard({ session, onViewDetails }: GroupSessionCardProps) {
       <div className="mb-4">
         <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
           <div
-            className={`h-full transition-all ${isFull ? 'bg-red-500' : 'bg-purple-500'}`}
+            className={`h-full transition-all ${isFull ? 'bg-red-500' : 'bg-whatsapp-500'}`}
             style={{ width: `${(session.currentParticipants / session.maxParticipants) * 100}%` }}
           />
         </div>
@@ -1015,7 +1040,7 @@ function GroupSessionCard({ session, onViewDetails }: GroupSessionCardProps) {
         <Button
           onClick={handleJoin}
           disabled={isFull}
-          className={`flex-1 ${isFull ? 'bg-gray-300' : 'bg-purple-600 hover:bg-purple-700'} text-white`}
+          className={`flex-1 ${isFull ? 'bg-gray-300' : 'bg-whatsapp-500 hover:bg-whatsapp-600'} text-white`}
         >
           <CalendarPlus className="w-4 h-4 mr-2" />
           {isFull ? 'Completa' : 'Inscribirme'}
@@ -1032,6 +1057,8 @@ interface SessionDetailViewProps {
 
 function SessionDetailView({ session, onBack }: SessionDetailViewProps) {
   const [isRegistered, setIsRegistered] = useState(false);
+  const [showVoiceModModal, setShowVoiceModModal] = useState(false);
+  const [pendingMeetLink, setPendingMeetLink] = useState<string | null>(null);
   const spotsLeft = session.maxParticipants - session.currentParticipants;
   const isFull = spotsLeft === 0;
 
@@ -1056,6 +1083,18 @@ function SessionDetailView({ session, onBack }: SessionDetailViewProps) {
     toast.success('Te has inscrito a la sesion');
   };
 
+  const handleJoinSession = () => {
+    setPendingMeetLink(session.meetLink);
+    setShowVoiceModModal(true);
+  };
+
+  const handleConfirmJoin = () => {
+    setShowVoiceModModal(false);
+    if (pendingMeetLink) {
+      window.open(pendingMeetLink, '_blank');
+    }
+  };
+
   const addToCalendar = () => {
     const title = encodeURIComponent(session.title);
     const details = encodeURIComponent(session.description + '\n\nEnlace: ' + session.meetLink);
@@ -1071,7 +1110,7 @@ function SessionDetailView({ session, onBack }: SessionDetailViewProps) {
       {/* Back button */}
       <button
         onClick={onBack}
-        className="flex items-center gap-2 text-purple-600 hover:text-purple-700 mb-6"
+        className="flex items-center gap-2 text-whatsapp-600 hover:text-whatsapp-700 mb-6"
       >
         <ArrowLeft className="w-4 h-4" />
         Volver a sesiones grupales
@@ -1080,8 +1119,8 @@ function SessionDetailView({ session, onBack }: SessionDetailViewProps) {
       {/* Session Details */}
       <div className="bg-white rounded-2xl p-6 shadow-sm mb-6">
         <div className="flex items-start gap-4 mb-6">
-          <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
-            <Video className="w-8 h-8 text-purple-600" />
+          <div className="w-16 h-16 bg-whatsapp-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            <Video className="w-8 h-8 text-whatsapp-600" />
           </div>
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -1138,17 +1177,15 @@ function SessionDetailView({ session, onBack }: SessionDetailViewProps) {
         <div className="flex flex-col sm:flex-row gap-3">
           {isRegistered ? (
             <>
-              <a
-                href={session.meetLink}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={handleJoinSession}
                 className="flex-1"
               >
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                <Button className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
                   <ExternalLink className="w-4 h-4 mr-2" />
                   Unirse a la reunion
                 </Button>
-              </a>
+              </button>
               <Button
                 variant="outline"
                 onClick={addToCalendar}
@@ -1162,7 +1199,7 @@ function SessionDetailView({ session, onBack }: SessionDetailViewProps) {
             <Button
               onClick={handleRegister}
               disabled={isFull}
-              className={`flex-1 ${isFull ? 'bg-gray-300' : 'bg-purple-600 hover:bg-purple-700'} text-white`}
+              className={`flex-1 ${isFull ? 'bg-gray-300' : 'bg-whatsapp-500 hover:bg-whatsapp-600'} text-white`}
             >
               <CalendarPlus className="w-4 h-4 mr-2" />
               {isFull ? 'Sesion completa' : 'Inscribirme a esta sesion'}
@@ -1172,9 +1209,9 @@ function SessionDetailView({ session, onBack }: SessionDetailViewProps) {
       </div>
 
       {/* Community Guidelines */}
-      <div className="bg-purple-50 rounded-2xl p-6 border border-purple-100">
-        <h3 className="font-semibold text-purple-900 mb-4">Antes de unirte</h3>
-        <ul className="space-y-3 text-purple-800 text-sm">
+      <div className="bg-whatsapp-50 rounded-2xl p-6 border border-whatsapp-100">
+        <h3 className="font-semibold text-whatsapp-900 mb-4">Antes de unirte</h3>
+        <ul className="space-y-3 text-whatsapp-800 text-sm">
           <li className="flex items-start gap-2">
             <Lock className="w-4 h-4 mt-0.5 flex-shrink-0" />
             <span>Todo lo compartido en la sesion es estrictamente confidencial</span>
@@ -1193,6 +1230,50 @@ function SessionDetailView({ session, onBack }: SessionDetailViewProps) {
           </li>
         </ul>
       </div>
+
+      {/* VoiceMod Warning Modal */}
+      {showVoiceModModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setShowVoiceModModal(false)}
+          />
+          
+          {/* Modal Content */}
+          <div className="relative bg-white rounded-2xl shadow-xl max-w-md w-full p-6 animate-in fade-in zoom-in-95 duration-200">
+            <div className="text-center">
+              {/* Warning Icon */}
+              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <AlertTriangle className="w-8 h-8 text-yellow-600" />
+              </div>
+              
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Participacion anonima
+              </h3>
+              
+              <p className="text-gray-600 mb-6">
+                Si quieres participar de forma anonima a la reunion, descarga:{' '}
+                <a 
+                  href="https://www.voicemod.net/es/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-whatsapp-600 hover:text-whatsapp-700 underline font-medium"
+                >
+                  https://www.voicemod.net/es/
+                </a>
+              </p>
+              
+              <button
+                onClick={handleConfirmJoin}
+                className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white font-medium py-3 px-6 rounded-xl transition-colors"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

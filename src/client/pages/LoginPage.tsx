@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 export default function LoginPage() {
   return (
     <Layout showFooter={false}>
-      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center py-12 px-4 bg-gradient-to-b from-purple-50 to-white">
+      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center py-12 px-4 bg-gradient-to-b from-whatsapp-50 to-white">
         <LoginForm />
       </div>
     </Layout>
@@ -67,9 +67,7 @@ function LoginForm() {
     <Card className="w-full max-w-md mx-auto bg-white border-0 shadow-xl">
       <CardHeader className="text-center pb-2">
         <div className="flex items-center justify-center gap-2 mb-4">
-          <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center">
-            <Heart className="w-6 h-6 text-white" />
-          </div>
+          <img src="/logo.png" className="w-10 h-10 object-contain" />
           <span className="text-2xl font-bold text-gray-900">PurpleMatch</span>
         </div>
         <CardTitle className="text-xl text-gray-900">
@@ -91,7 +89,7 @@ function LoginForm() {
               name="email"
               id="email"
               placeholder="tu@email.com"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -103,7 +101,7 @@ function LoginForm() {
               </Label>
               <Link
                 to="/forgot-password"
-                className="text-sm text-purple-600 hover:text-purple-700"
+                className="text-sm text-whatsapp-600 hover:text-whatsapp-700"
               >
                 ¿Olvidaste tu contraseña?
               </Link>
@@ -113,13 +111,13 @@ function LoginForm() {
               name="password"
               id="password"
               placeholder="Tu contraseña"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
 
           <Button
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+            className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             type="submit"
           >
             Iniciar sesion
@@ -132,7 +130,7 @@ function LoginForm() {
           ¿No tienes cuenta?{' '}
           <Link
             to="/signup"
-            className="text-purple-600 hover:text-purple-700 font-medium"
+            className="text-whatsapp-600 hover:text-whatsapp-700 font-medium"
           >
             Crear cuenta
           </Link>

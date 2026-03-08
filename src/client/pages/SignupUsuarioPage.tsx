@@ -13,7 +13,7 @@ import { Heart, User, Check, MapPin } from 'lucide-react';
 export default function SignupUsuarioPage() {
   return (
     <Layout showFooter={false}>
-      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center py-12 px-4 bg-gradient-to-b from-purple-50 to-white">
+      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center py-12 px-4 bg-gradient-to-b from-whatsapp-50 to-white">
         <UsuarioSignupFlow />
       </div>
     </Layout>
@@ -99,9 +99,7 @@ function UsuarioSignupForm({
     <Card className="w-full max-w-md mx-auto bg-white border-0 shadow-xl relative">
       <CardHeader className="text-center pb-2">
         <div className="flex items-center justify-center gap-2 mb-2">
-          <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-            <Heart className="w-5 h-5 text-white" />
-          </div>
+          <img src="/logo.png" className="w-10 h-10 object-contain" />
         </div>
         <CardTitle className="text-xl text-gray-900">
           Registro de Usuaria
@@ -122,7 +120,7 @@ function UsuarioSignupForm({
               name="nombre"
               id="nombre"
               placeholder="Como te gustaria que te llamemos"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
             <p className="text-xs text-gray-500 mt-1">
@@ -139,7 +137,7 @@ function UsuarioSignupForm({
               name="email"
               id="email"
               placeholder="tu@email.com"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -153,7 +151,7 @@ function UsuarioSignupForm({
               name="password"
               id="password"
               placeholder="Mínimo 8 caracteres"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -167,7 +165,7 @@ function UsuarioSignupForm({
               name="confirmPassword"
               id="confirm-password"
               placeholder="Repite tu contraseña"
-              className="bg-gray-50 border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+              className="bg-gray-50 border-gray-200 focus:border-whatsapp-500 focus:ring-whatsapp-500"
               required
             />
           </div>
@@ -178,18 +176,18 @@ function UsuarioSignupForm({
                 id="consent-terms"
                 type="checkbox"
                 name="consent-terms"
-                className="w-4 h-4 border-gray-300 rounded bg-gray-50 text-purple-600 focus:ring-purple-500"
+                className="w-4 h-4 border-gray-300 rounded bg-gray-50 text-whatsapp-600 focus:ring-whatsapp-500"
                 required
               />
             </div>
             <div className="ml-3 text-sm">
               <Label htmlFor="consent-terms" className="text-gray-600">
                 Acepto los{' '}
-                <a className="font-medium text-purple-600 hover:underline" href="/terms" target="_blank">
+                <a className="font-medium text-whatsapp-600 hover:underline" href="/terms" target="_blank">
                   Términos y Condiciones
                 </a>{' '}
                 y la{' '}
-                <a className="font-medium text-purple-600 hover:underline" href="/privacy" target="_blank">
+                <a className="font-medium text-whatsapp-600 hover:underline" href="/privacy" target="_blank">
                   Política de Privacidad
                 </a>
               </Label>
@@ -197,7 +195,7 @@ function UsuarioSignupForm({
           </div>
 
           <Button
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+            className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             type="submit"
             disabled={isLoading}
           >
@@ -211,7 +209,7 @@ function UsuarioSignupForm({
           ¿Ya tienes cuenta?{' '}
           <Link
             to="/login"
-            className="text-purple-600 hover:text-purple-700 font-medium"
+            className="text-whatsapp-600 hover:text-whatsapp-700 font-medium"
           >
             Inicia sesión
           </Link>
@@ -397,7 +395,7 @@ function UsuarioOnboardingForm({ onSuccess }: { onSuccess: () => void }) {
                 onClick={() => setIsRural(!isRural)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
                   isRural
-                    ? 'bg-purple-100 border-purple-300 text-purple-700'
+                    ? 'bg-whatsapp-100 border-whatsapp-300 text-whatsapp-700'
                     : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'
                 }`}
               >
@@ -453,12 +451,12 @@ function UsuarioOnboardingForm({ onSuccess }: { onSuccess: () => void }) {
               id="medicalHistory"
               rows={3}
               placeholder="Cualquier información que consideres relevante para tu proceso..."
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-purple-500 focus:ring-purple-500 text-sm"
+              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:border-whatsapp-500 focus:ring-whatsapp-500 text-sm"
             />
           </div>
 
           <Button
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+            className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
             type="submit"
             disabled={isLoading}
           >
@@ -488,7 +486,7 @@ function UsuarioSignupSuccess({ email }: { email: string }) {
         </p>
 
         <Link to="/login" className="block">
-          <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+          <Button className="w-full bg-whatsapp-500 hover:bg-whatsapp-600 text-white">
             Iniciar sesión
           </Button>
         </Link>

@@ -122,7 +122,7 @@ export default function AdminDashboardPage() {
     return (
       <Layout>
         <div className="flex items-center justify-center min-h-[calc(100vh-64px)]">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-whatsapp-600"></div>
         </div>
       </Layout>
     );
@@ -135,8 +135,8 @@ export default function AdminDashboardPage() {
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                <Shield className="w-6 h-6 text-purple-600" />
+              <div className="w-12 h-12 bg-whatsapp-100 rounded-full flex items-center justify-center">
+                <Shield className="w-6 h-6 text-whatsapp-600" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Panel de Administrador</h1>
@@ -193,8 +193,8 @@ export default function AdminDashboardPage() {
 
             <div className="bg-white rounded-xl p-6 shadow-sm">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                  <Users className="w-6 h-6 text-purple-600" />
+                <div className="w-12 h-12 bg-whatsapp-100 rounded-full flex items-center justify-center">
+                  <Users className="w-6 h-6 text-whatsapp-600" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Total Profesionales</p>
@@ -213,7 +213,7 @@ export default function AdminDashboardPage() {
                 placeholder="Buscar profesionales..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-whatsapp-500"
               />
             </div>
           </div>
@@ -261,7 +261,7 @@ export default function AdminDashboardPage() {
                           <td className="px-6 py-4">
                             <div className="flex flex-wrap gap-1">
                               {professional.specialties?.slice(0, 3).map((s, i) => (
-                                <span key={i} className="px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">
+                                <span key={i} className="px-2 py-1 bg-whatsapp-50 text-whatsapp-700 rounded-full text-xs">
                                   {s}
                                 </span>
                               ))}
@@ -285,7 +285,7 @@ export default function AdminDashboardPage() {
                               <Button
                                 size="sm"
                                 onClick={() => verifyMutation.mutate(professional.id)}
-                                className="bg-green-600 hover:bg-green-700 text-white"
+                                className="bg-whatsapp-500 hover:bg-whatsapp-600 text-white"
                                 disabled={verifyMutation.isPending}
                               >
                                 <Check className="w-4 h-4 mr-1" />
@@ -358,7 +358,7 @@ export default function AdminDashboardPage() {
                           <td className="px-6 py-4">
                             <div className="flex flex-wrap gap-1">
                               {professional.specialties?.slice(0, 3).map((s, i) => (
-                                <span key={i} className="px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">
+                                <span key={i} className="px-2 py-1 bg-whatsapp-50 text-whatsapp-700 rounded-full text-xs">
                                   {s}
                                 </span>
                               ))}

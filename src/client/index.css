@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  * {
+    @apply border-whatsapp-500;
+  }
+  body {
+    @apply bg-whatsapp-50 text-gray-900;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-whatsapp-50;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-whatsapp-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-whatsapp-500;
+  }
+}
+
+@layer utilities {
+  .gradient-purple {
+    background: linear-gradient(135deg, #7B2D8E 0%, #9B5DBF 50%, #C09AD7 100%);
+  }
+  .gradient-hero {
+    background: linear-gradient(160deg, #240B29 0%, #5E226C 40%, #7B2D8E 100%);
+  }
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #7B2D8E, #C09AD7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  .whatsapp-btn {
+    background: linear-gradient(135deg, #25D366, #1DB954);
+    @apply text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+  .whatsapp-btn:hover {
+    background: linear-gradient(135deg, #1DB954, #158F42);
+    transform: translateY(-1px);
+  }
+}
