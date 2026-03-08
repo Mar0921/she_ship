@@ -10,13 +10,43 @@ import { authenticateToken, optionalAuth, generateToken } from './middleware/aut
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Determine if we're in production (running from dist/) or development
-const isProduction = __dirname.includes('/dist/') || __dirname.includes('\\dist\\');
+// Database path - try multiple locations for production compatibility
+let dbPath: string;
 
-// Database path: in production it's at project root/data/, in dev it's relative to current dir
-const dbPath = isProduction
-  ? path.join(__dirname, '../../data/purplematch.db')
-  : path.join(__dirname, '../data/purplematch.db');
+// Check if we're in a dist folder (production)
+if (__dirname.includes('/dist/') || __dirname.includes('\\dist\\')) {
+  // In production: check multiple possible locations
+  const possiblePaths = [
+    path.join(__dirname, '../../data/purplematch.db'),  // from dist/server to data/
+    path.join(__dirname, '../../../data/purplematch.db'), // alternative
+    path.join(process.cwd(), 'src/data/purplematch.db'), // from project root
+  ];
+  
+  for (const p of possiblePaths) {
+    if (fs.existsSync(path.dirname(p))) {
+      dbPath = p;
+      break;
+    }
+  }
+  
+  if (!dbPath) {
+    // Use the first option as default
+    dbPath = possiblePaths[0];
+  }
+} else {
+  // Development: use relative path from src/server/
+  dbPath = path.join(__dirname, '../data/purplematch.db');
+}
+
+console.log('🗄️  __dirname:', __dirname);
+console.log('🗄️  dbPath:', dbPath);
+
+// Create data directory if it doesn't exist
+const dataDir = path.dirname(dbPath);
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+  console.log('📁 Directorio de datos creado en:', dataDir);
+}
 
 const app: any = express();
 const PORT = process.env.PORT || 3002;
