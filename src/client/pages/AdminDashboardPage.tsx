@@ -131,16 +131,16 @@ export default function AdminDashboardPage() {
   return (
     <Layout showNavigation={false}>
       {/* Admin Header */}
-      <div className="bg-white border-b border-gray-200 px-4 py-3">
+      <div className="bg-gradient-to-r from-purple-900 via-purple-800 to-purple-700 px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link to="/admin" className="flex items-center gap-2">
             <img src="/logo.png" className="w-10 h-10 object-contain" />
-            <span className="text-xl font-bold text-purple-700">PurpleMatch</span>
+            <span className="text-xl font-bold text-white">PurpleMatch</span>
           </Link>
           <Button 
             onClick={handleLogout}
             variant="ghost"
-            className="text-gray-600 hover:text-red-600"
+            className="text-white hover:bg-white/10"
           >
             <LogOut className="w-4 h-4 mr-2" />
             Cerrar sesión
