@@ -1289,6 +1289,58 @@ app.get('/api/health', (req: any, res: any) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// ============================================================================
+// STATIC FILES - Sirve la aplicación React
+// ============================================================================
+
+// En producción (Render), intentar múltiples ubicaciones
+const possibleClientPaths = [
+  path.join(__dirname, '../../src/client/dist'),  // desde dist/server -> src/client/dist
+  path.join(process.cwd(), 'src/client/dist'),   // desde raíz del proyecto
+  path.join(__dirname, '../../dist/client'),     // desde dist/server -> dist/client
+  path.join(process.cwd(), 'dist/client'),       // desde raíz del proyecto
+];
+
+let clientDistPath = '';
+for (const p of possibleClientPaths) {
+  if (fs.existsSync(p)) {
+    clientDistPath = p;
+    break;
+  }
+}
+
+// Si no encuentra la carpeta, usar la primera opción por defecto
+if (!clientDistPath) {
+  clientDistPath = possibleClientPaths[0];
+}
+
+console.log('📁 Buscando archivos estáticos en:', clientDistPath);
+console.log('📁 ¿Existe la carpeta?', fs.existsSync(clientDistPath));
+
+// Verificar si existe la carpeta dist/client
+if (fs.existsSync(clientDistPath)) {
+  // Servir archivos estáticos
+  app.use(express.static(clientDistPath, {
+    index: false,  // No servir index.html automáticamente
+    dotfiles: 'ignore'
+  }));
+  
+  console.log('✅ Archivos estáticos configurados');
+}
+
+// Para todas las rutas que no sean API ni archivos estáticos, devolver index.html (SPA fallback)
+app.get('*', (req: any, res: any) => {
+  // No aplicar para rutas de API o archivos con extensión
+  if (!req.path.startsWith('/api') && !req.path.includes('.')) {
+    const indexPath = path.join(clientDistPath, 'index.html');
+    if (fs.existsSync(indexPath)) {
+      res.sendFile(indexPath);
+    } else {
+      res.status(404).send('Archivo no encontrado. Ejecuta npm run build.');
+    }
+  }
+});
+
 // Start server
 initDatabase().then(() => {
   console.log('📦 Base de datos cargada');
