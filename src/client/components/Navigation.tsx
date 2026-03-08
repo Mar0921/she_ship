@@ -33,6 +33,8 @@ export default function Navigation() {
   // Wait for auth to load before determining redirect
   const getDashboardUrl = () => {
     if (authLoading) return '/home'; // Show loading state, don't redirect
+    // For login/signup pages, go to landing page
+    if (isLoginPage || isSignupPage) return '/';
     if (user?.role === 'professional') return '/dashboard-profesional';
     if (user?.role === 'admin') return '/admin';
     if (user?.role === 'user') return '/home';

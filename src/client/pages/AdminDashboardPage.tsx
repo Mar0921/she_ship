@@ -139,10 +139,10 @@ export default function AdminDashboardPage() {
           </Link>
           <Button 
             onClick={handleLogout}
-            variant="outline"
-            className="flex items-center gap-2"
+            variant="ghost"
+            className="text-gray-600 hover:text-red-600"
           >
-            <LogOut className="w-4 h-4" />
+            <LogOut className="w-4 h-4 mr-2" />
             Cerrar sesión
           </Button>
         </div>

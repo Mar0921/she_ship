@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/client/components/ui/Card';
-import Page from '@/client/components/Page';
+import Layout from '@/client/components/Layout';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 
@@ -7,24 +7,24 @@ export default function TermsPage() {
   const navigate = useNavigate();
 
   return (
-    <Page>
+    <Layout showNavigation={false} showFooter={false}>
       {/* Custom Header */}
-      <div className="bg-white border-b border-gray-200 px-4 py-3">
+      <div className="bg-gradient-to-r from-purple-900 via-purple-800 to-purple-700 px-4 py-3">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <img src="/logo.png" className="w-10 h-10 object-contain" />
-            <span className="text-xl font-bold text-purple-700">PurpleMatch</span>
+            <span className="text-xl font-bold text-white">PurpleMatch</span>
           </Link>
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+            className="flex items-center gap-2 px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
             Volver
           </button>
         </div>
       </div>
-      <div className="max-w-4xl mx-auto py-8 px-4">
+      <div className="max-w-4xl mx-auto py-8 px-4 bg-white">
         <Card className="bg-white text-gray-900">
           <CardHeader>
             <CardTitle className="text-3xl text-center text-purple-700">TÉRMINOS Y CONDICIONES DE USO</CardTitle>
@@ -160,6 +160,6 @@ export default function TermsPage() {
           </CardContent>
         </Card>
       </div>
-    </Page>
+    </Layout>
   );
 }
