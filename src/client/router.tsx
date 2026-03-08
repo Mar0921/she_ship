@@ -60,6 +60,10 @@ const routes: RouteObject[] = [
     Component: lazy(() => import('./pages/TermsPage'))
   },
   {
+    path: '/privacy',
+    Component: lazy(() => import('./pages/PrivacyPolicyPage'))
+  },
+  {
     path: '*',
     Component: lazy(() => import('./pages/NotFoundPage'))
   }
