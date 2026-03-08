@@ -36,16 +36,27 @@ interface ProfessionalProfile {
 }
 
 export default function HomePage() {
-  const { user } = useSession();
+  const { user, loading: authLoading } = useSession();
   const navigate = useNavigate();
   const [isProfessional, setIsProfessional] = useState<boolean | null>(null);
 
-  // Redirect to login if not authenticated
+  // Show loading spinner while auth is loading
+  if (authLoading) {
+    return (
+      <Layout>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-700"></div>
+        </div>
+      </Layout>
+    );
+  }
+
+  // Redirect to login if not authenticated (only after auth loading is complete)
   useEffect(() => {
-    if (!user) {
+    if (!authLoading && !user) {
       navigate('/login');
     }
-  }, [user, navigate]);
+  }, [user, authLoading, navigate]);
 
   // Query to check user role
   const { data: roleData, isLoading: isRoleLoading, error: roleError } = useQuery<UserRole>({

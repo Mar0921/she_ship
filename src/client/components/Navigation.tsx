@@ -26,15 +26,17 @@ const navLinks = [
 export default function Navigation() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Get the correct redirect URL based on user role
+  // Wait for auth to load before determining redirect
   const getDashboardUrl = () => {
+    if (authLoading) return '/home'; // Show loading state, don't redirect
     if (user?.role === 'professional') return '/dashboard-profesional';
     if (user?.role === 'admin') return '/admin';
     if (user?.role === 'user') return '/home';
-    return '/';
+    return '/home'; // Default to home instead of landing for logged-in users
   };
 
   const isActive = (href: string) => {
