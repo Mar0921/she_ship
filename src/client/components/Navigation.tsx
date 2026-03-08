@@ -63,13 +63,13 @@ export default function Navigation() {
             <span className="text-xl font-bold text-white">PurpleMatch</span>
           </Link>
 
-          {/* Desktop Navigation - Only show on non-landing pages, non-login pages, non-signup pages, and non-professional pages */}
-          {(!isLandingPage && !isLoginPage && !isSignupPage && !isProfessionalPage) && (
+          {/* Desktop Navigation - Only show on non-login pages, non-signup pages, and non-professional pages */}
+          {(!isLoginPage && !isSignupPage && !isProfessionalPage) && (
             <nav className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
-                  to={link.href}
+                  to={!user ? `/login?redirect=${link.href}` : link.href}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     isActive(link.href)
                       ? 'bg-white/20 text-white font-semibold'
@@ -232,7 +232,7 @@ export default function Navigation() {
                     return (
                       <Link
                         key={link.href}
-                        to={link.href}
+                        to={!user ? `/login?redirect=${link.href}` : link.href}
                         onClick={() => setMobileMenuOpen(false)}
                         className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
                           isActive(link.href)

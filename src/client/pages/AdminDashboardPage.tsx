@@ -130,6 +130,23 @@ export default function AdminDashboardPage() {
 
   return (
     <Layout showNavigation={false}>
+      {/* Admin Header */}
+      <div className="bg-white border-b border-gray-200 px-4 py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Link to="/admin" className="flex items-center gap-2">
+            <img src="/logo.png" className="w-10 h-10 object-contain" />
+            <span className="text-xl font-bold text-purple-700">PurpleMatch</span>
+          </Link>
+          <Button 
+            onClick={handleLogout}
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <LogOut className="w-4 h-4" />
+            Cerrar sesión
+          </Button>
+        </div>
+      </div>
       <div className="bg-gray-50 min-h-[calc(100vh-64px)]">
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
@@ -143,14 +160,6 @@ export default function AdminDashboardPage() {
                 <p className="text-gray-500">Gestiona usuarios y profesionales</p>
               </div>
             </div>
-            <Button 
-              onClick={handleLogout}
-              variant="outline"
-              className="flex items-center gap-2"
-            >
-              <LogOut className="w-4 h-4" />
-              Cerrar sesión
-            </Button>
           </div>
 
           {/* Stats Cards */}

@@ -32,10 +32,10 @@ const emergencyLines = [
 ];
 
 const platformLinks = [
-  { href: '/terapeutas', label: 'Encontrar Terapeuta' },
-  { href: '/comunidad', label: 'Comunidad' },
-  { href: '/recursos', label: 'Recursos' },
-  { href: '/perfil', label: 'Mi Espacio' }
+  { href: '/login?redirect=/terapeutas', label: 'Encontrar Terapeuta' },
+  { href: '/login?redirect=/comunidad', label: 'Comunidad' },
+  { href: '/login?redirect=/recursos', label: 'Recursos' },
+  { href: '/login?redirect=/perfil', label: 'Mi Espacio' }
 ];
 
 const legalLinks = [
@@ -216,7 +216,7 @@ export default function Footer() {
             <div className="mt-6">
               <h4 className="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Recursos Externos</h4>
               <a
-                href="https://www.migualdad.gob.es"
+                href="https://www.minigualdadyequidad.gov.co/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm text-purple-300 hover:text-purple-100 transition-colors"
