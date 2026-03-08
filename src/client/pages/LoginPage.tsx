@@ -24,10 +24,17 @@ function LoginForm() {
   const { user, loading } = useSession();
   const { login } = useAuth();
 
-  // If already logged in, redirect to home (only when not loading)
+  // If already logged in, redirect based on role (only when not loading)
   useEffect(() => {
     if (!loading && user) {
-      navigate('/home');
+      // Redirect based on user role
+      if (user.role === 'professional') {
+        navigate('/dashboard-profesional');
+      } else if (user.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/home');
+      }
     }
   }, [user, loading, navigate]);
 
@@ -45,22 +52,6 @@ function LoginForm() {
 
     // Login using the auth context (this sets the user in context)
     await login(email, password);
-    
-    // After successful login, redirect based on user role
-    // We need to fetch the user info to get the role
-    const token = localStorage.getItem('token');
-    const response = await fetch('/api/auth/me', {
-      headers: { 'Authorization': `Bearer ${token}` }
-    });
-    const userData = await response.json();
-    
-    if (userData.role === 'professional') {
-      navigate('/dashboard-profesional');
-    } else if (userData.role === 'admin') {
-      navigate('/admin');
-    } else {
-      navigate('/home');
-    }
   }, [navigate, login]);
 
   return (
